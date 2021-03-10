@@ -1,0 +1,95 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><style data-href="/blog/styles.26a9653a6e822f025180.css" id="gatsby-global-css">@import url(https://design-system.ebalance.dev/dist/css/index.min.css);body{padding-bottom:50px;background:#f7f8f9}.gatsby-resp-image-wrapper{margin:7px 0!important;border-radius:5px;border:1px solid #ccc;box-shadow:0 3px 8px rgb(0 0 0/.1);overflow:hidden}.panel{max-width:800px;margin:0 auto;padding:50px;overflow:unset}.blog-link{display:block;padding:20px;border-radius:4px;background:#f7f8f9;transition:.15s;cursor:pointer}.blog-link+.blog-link{margin-top:20px}.blog-link:hover{background:#e7e8e9}</style><meta name="generator" content="Gatsby 3.0.4"/><title data-react-helmet="true">[Shop 13] JSON Strukturen in den Redux Store integrieren | Oliver Knoblich</title><meta data-react-helmet="true" name="description" content="Blog von Oliver Knoblich"/><meta data-react-helmet="true" property="og:title" content="[Shop 13] JSON Strukturen in den Redux Store integrieren"/><meta data-react-helmet="true" property="og:description" content="Blog von Oliver Knoblich"/><meta data-react-helmet="true" property="og:type" content="website"/><meta data-react-helmet="true" name="twitter:card" content="summary"/><meta data-react-helmet="true" name="twitter:creator" content="Oliver Knoblich"/><meta data-react-helmet="true" name="twitter:title" content="[Shop 13] JSON Strukturen in den Redux Store integrieren"/><meta data-react-helmet="true" name="twitter:description" content="Blog von Oliver Knoblich"/><link as="script" rel="preload" href="/blog/webpack-runtime-b52e989569019ef1a593.js"/><link as="script" rel="preload" href="/blog/framework-bee5b4b4fa37bec3e7c7.js"/><link as="script" rel="preload" href="/blog/app-225160758adade3fa3f2.js"/><link as="script" rel="preload" href="/blog/commons-5568e36bad1ff202403a.js"/><link as="script" rel="preload" href="/blog/component---src-templates-blog-post-js-4ecac0af02aa737e476c.js"/><link as="fetch" rel="preload" href="/blog/page-data/article-23-shop-13-redux-json-data/page-data.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/blog/page-data/sq/d/63159454.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/blog/page-data/app-data.json" crossorigin="anonymous"/></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><div class="header is-white"><div class="inner"><nav><ul><li><a href="/">Home</a></li><li><a href="/blog/" class="is-active">Blog</a></li></ul></nav><nav><ul><li><a href="/react-admin-panel/"><span class="react">React</span>Admin Panel</a></li><li><a href="/react-book-store/"><span class="react">React</span>Book Store</a></li><li><a href="/react-budget-list/"><span class="react">React</span>Budget List</a></li><li><a href="/react-github-find/"><span class="react">React</span>GitHub Find</a></li><li><a href="/sass-design-system/"><span class="sass">Sass</span>Design System</a></li><li class="offcanvas-toggle"><svg viewBox="0 0 100 100"><path class="line l1" d="m 70,33 h -40 c 0,0 -8.5,-0.149796 -8.5,8.5 0,8.649796 8.5,8.5 8.5,8.5 h 20 v -20"></path><path class="line l2" d="m 70,50 h -40"></path><path class="line l3" d="m 30,67 h 40 c 0,0 8.5,0.149796 8.5,-8.5 0,-8.649796 -8.5,-8.5 -8.5,-8.5 h -20 v 20"></path></svg></li></ul></nav></div></div><div class="offcanvas"><div class="inner"><nav><ul><li><a href="/">Home</a></li><li><a href="/blog/" class="is-active">Blog</a></li><li><a href="/react-admin-panel/"><span class="react">React</span> Admin Panel</a></li><li><a href="/react-book-store/"><span class="react">React</span> Book Store</a></li><li><a href="/react-budget-list/"><span class="react">React</span> Budget List</a></li><li><a href="/react-github-find/"><span class="react">React</span> GitHub Find</a></li><li><a href="/sass-design-system/"><span class="sass">Sass</span> Design System</a></li></ul></nav></div></div><div class="container"><h1 class="text-center my-5">Blog</h1><div class="panel is-high"><a style="position:absolute;top:-38px;left:0;width:100%;font-size:12px;text-align:center" href="/blog/"><span style="position:relative;top:2px;font-size:16px">←</span> zurück zur Übersicht</a><div class="row"><div class="col-12"><h1>[Shop 13] JSON Strukturen in den Redux Store integrieren</h1></div><div class="col-12"><article><p>Homepage und Shoppage holen sich ihre Daten aktuell aus dem lokalen State.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 600px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/static/1015eefbb0a0f90fd3a2086a81b34671/23313/23-1.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 111.33333333333333%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAWABQDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAAECBf/EABQBAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhADEAAAAeTnUICwID//xAAUEAEAAAAAAAAAAAAAAAAAAAAw/9oACAEBAAEFAh//xAAUEQEAAAAAAAAAAAAAAAAAAAAg/9oACAEDAQE/AR//xAAUEQEAAAAAAAAAAAAAAAAAAAAg/9oACAECAQE/AR//xAAUEAEAAAAAAAAAAAAAAAAAAAAw/9oACAEBAAY/Ah//xAAYEAADAQEAAAAAAAAAAAAAAAAAEEEBEf/aAAgBAQABPyGHVHDV/9oADAMBAAIAAwAAABBEyDz/xAAUEQEAAAAAAAAAAAAAAAAAAAAg/9oACAEDAQE/EB//xAAUEQEAAAAAAAAAAAAAAAAAAAAg/9oACAECAQE/EB//xAAcEAACAgIDAAAAAAAAAAAAAAAAARExEFEhYZH/2gAIAQEAAT8QmznwehPYlZTyOVslomhbH//Z'); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Screenshot"
+        title="Screenshot"
+        src="/blog/static/1015eefbb0a0f90fd3a2086a81b34671/b4294/23-1.jpg"
+        srcset="/blog/static/1015eefbb0a0f90fd3a2086a81b34671/75985/23-1.jpg 150w,
+/blog/static/1015eefbb0a0f90fd3a2086a81b34671/f93b5/23-1.jpg 300w,
+/blog/static/1015eefbb0a0f90fd3a2086a81b34671/b4294/23-1.jpg 600w,
+/blog/static/1015eefbb0a0f90fd3a2086a81b34671/23313/23-1.jpg 741w"
+        sizes="(max-width: 600px) 100vw, 600px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>Das bauen wir um. Die Schritte für beide JSON Strukturen sind exakt die gleichen.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 600px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/static/ee84c04197a32b0052bbfa2f3fcf3c86/67471/23-2.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 72%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAOABQDASIAAhEBAxEB/8QAFwABAAMAAAAAAAAAAAAAAAAAAAECBf/EABQBAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhADEAAAAckkoD//xAAUEAEAAAAAAAAAAAAAAAAAAAAg/9oACAEBAAEFAl//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/AT//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/AT//xAAUEAEAAAAAAAAAAAAAAAAAAAAg/9oACAEBAAY/Al//xAAaEAACAgMAAAAAAAAAAAAAAAAAAREhEEFh/9oACAEBAAE/ITWGqkVonh//2gAMAwEAAgADAAAAECff/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPxA//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPxA//8QAGhABAAMAAwAAAAAAAAAAAAAAAQARMSFBkf/aAAgBAQABPxBeDJdai27Kig9hwDO4i4//2Q=='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Screenshot"
+        title="Screenshot"
+        src="/blog/static/ee84c04197a32b0052bbfa2f3fcf3c86/b4294/23-2.jpg"
+        srcset="/blog/static/ee84c04197a32b0052bbfa2f3fcf3c86/75985/23-2.jpg 150w,
+/blog/static/ee84c04197a32b0052bbfa2f3fcf3c86/f93b5/23-2.jpg 300w,
+/blog/static/ee84c04197a32b0052bbfa2f3fcf3c86/b4294/23-2.jpg 600w,
+/blog/static/ee84c04197a32b0052bbfa2f3fcf3c86/8e1fc/23-2.jpg 900w,
+/blog/static/ee84c04197a32b0052bbfa2f3fcf3c86/67471/23-2.jpg 1072w"
+        sizes="(max-width: 600px) 100vw, 600px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 600px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/static/91cf3db8a45c000bde000aa41e53fb98/0d465/23-3.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 40%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAIABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAEF/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEAMQAAAByYEB/8QAFBABAAAAAAAAAAAAAAAAAAAAEP/aAAgBAQABBQJ//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPwE//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPwE//8QAFBABAAAAAAAAAAAAAAAAAAAAEP/aAAgBAQAGPwJ//8QAFxABAQEBAAAAAAAAAAAAAAAAAQARIf/aAAgBAQABPyFeQ23/2gAMAwEAAgADAAAAEHfP/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPxA//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPxA//8QAGhAAAgIDAAAAAAAAAAAAAAAAAAERITFBUf/aAAgBAQABPxBnVDo0O2Ef/9k='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Screenshot"
+        title="Screenshot"
+        src="/blog/static/91cf3db8a45c000bde000aa41e53fb98/b4294/23-3.jpg"
+        srcset="/blog/static/91cf3db8a45c000bde000aa41e53fb98/75985/23-3.jpg 150w,
+/blog/static/91cf3db8a45c000bde000aa41e53fb98/f93b5/23-3.jpg 300w,
+/blog/static/91cf3db8a45c000bde000aa41e53fb98/b4294/23-3.jpg 600w,
+/blog/static/91cf3db8a45c000bde000aa41e53fb98/8e1fc/23-3.jpg 900w,
+/blog/static/91cf3db8a45c000bde000aa41e53fb98/e5166/23-3.jpg 1200w,
+/blog/static/91cf3db8a45c000bde000aa41e53fb98/0d465/23-3.jpg 1370w"
+        sizes="(max-width: 600px) 100vw, 600px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p></article></div></div></div></div></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/article-23-shop-13-redux-json-data/";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"polyfill":["/polyfill-2f533b7f1322894d1916.js"],"app":["/app-225160758adade3fa3f2.js"],"component---src-pages-404-js":["/component---src-pages-404-js-b6cff82b20efc5c765a6.js"],"component---src-pages-index-js":["/component---src-pages-index-js-67ea04f1708c39eeae81.js"],"component---src-templates-blog-post-js":["/component---src-templates-blog-post-js-4ecac0af02aa737e476c.js"]};/*]]>*/</script><script src="/blog/polyfill-2f533b7f1322894d1916.js" nomodule=""></script><script src="/blog/component---src-templates-blog-post-js-4ecac0af02aa737e476c.js" async=""></script><script src="/blog/commons-5568e36bad1ff202403a.js" async=""></script><script src="/blog/app-225160758adade3fa3f2.js" async=""></script><script src="/blog/framework-bee5b4b4fa37bec3e7c7.js" async=""></script><script src="/blog/webpack-runtime-b52e989569019ef1a593.js" async=""></script><script src="https://design-system.ebalance.dev/dist/js/header.js"></script><script src="https://design-system.ebalance.dev/dist/js/off-canvas.js"></script></body></html>

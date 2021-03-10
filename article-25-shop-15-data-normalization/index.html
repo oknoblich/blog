@@ -1,0 +1,160 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><style data-href="/blog/styles.26a9653a6e822f025180.css" id="gatsby-global-css">@import url(https://design-system.ebalance.dev/dist/css/index.min.css);body{padding-bottom:50px;background:#f7f8f9}.gatsby-resp-image-wrapper{margin:7px 0!important;border-radius:5px;border:1px solid #ccc;box-shadow:0 3px 8px rgb(0 0 0/.1);overflow:hidden}.panel{max-width:800px;margin:0 auto;padding:50px;overflow:unset}.blog-link{display:block;padding:20px;border-radius:4px;background:#f7f8f9;transition:.15s;cursor:pointer}.blog-link+.blog-link{margin-top:20px}.blog-link:hover{background:#e7e8e9}</style><meta name="generator" content="Gatsby 3.0.4"/><title data-react-helmet="true">[Shop 15] Data Normalization | Oliver Knoblich</title><meta data-react-helmet="true" name="description" content="Blog von Oliver Knoblich"/><meta data-react-helmet="true" property="og:title" content="[Shop 15] Data Normalization"/><meta data-react-helmet="true" property="og:description" content="Blog von Oliver Knoblich"/><meta data-react-helmet="true" property="og:type" content="website"/><meta data-react-helmet="true" name="twitter:card" content="summary"/><meta data-react-helmet="true" name="twitter:creator" content="Oliver Knoblich"/><meta data-react-helmet="true" name="twitter:title" content="[Shop 15] Data Normalization"/><meta data-react-helmet="true" name="twitter:description" content="Blog von Oliver Knoblich"/><link as="script" rel="preload" href="/blog/webpack-runtime-b52e989569019ef1a593.js"/><link as="script" rel="preload" href="/blog/framework-bee5b4b4fa37bec3e7c7.js"/><link as="script" rel="preload" href="/blog/app-225160758adade3fa3f2.js"/><link as="script" rel="preload" href="/blog/commons-5568e36bad1ff202403a.js"/><link as="script" rel="preload" href="/blog/component---src-templates-blog-post-js-4ecac0af02aa737e476c.js"/><link as="fetch" rel="preload" href="/blog/page-data/article-25-shop-15-data-normalization/page-data.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/blog/page-data/sq/d/63159454.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/blog/page-data/app-data.json" crossorigin="anonymous"/></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><div class="header is-white"><div class="inner"><nav><ul><li><a href="/">Home</a></li><li><a href="/blog/" class="is-active">Blog</a></li></ul></nav><nav><ul><li><a href="/react-admin-panel/"><span class="react">React</span>Admin Panel</a></li><li><a href="/react-book-store/"><span class="react">React</span>Book Store</a></li><li><a href="/react-budget-list/"><span class="react">React</span>Budget List</a></li><li><a href="/react-github-find/"><span class="react">React</span>GitHub Find</a></li><li><a href="/sass-design-system/"><span class="sass">Sass</span>Design System</a></li><li class="offcanvas-toggle"><svg viewBox="0 0 100 100"><path class="line l1" d="m 70,33 h -40 c 0,0 -8.5,-0.149796 -8.5,8.5 0,8.649796 8.5,8.5 8.5,8.5 h 20 v -20"></path><path class="line l2" d="m 70,50 h -40"></path><path class="line l3" d="m 30,67 h 40 c 0,0 8.5,0.149796 8.5,-8.5 0,-8.649796 -8.5,-8.5 -8.5,-8.5 h -20 v 20"></path></svg></li></ul></nav></div></div><div class="offcanvas"><div class="inner"><nav><ul><li><a href="/">Home</a></li><li><a href="/blog/" class="is-active">Blog</a></li><li><a href="/react-admin-panel/"><span class="react">React</span> Admin Panel</a></li><li><a href="/react-book-store/"><span class="react">React</span> Book Store</a></li><li><a href="/react-budget-list/"><span class="react">React</span> Budget List</a></li><li><a href="/react-github-find/"><span class="react">React</span> GitHub Find</a></li><li><a href="/sass-design-system/"><span class="sass">Sass</span> Design System</a></li></ul></nav></div></div><div class="container"><h1 class="text-center my-5">Blog</h1><div class="panel is-high"><a style="position:absolute;top:-38px;left:0;width:100%;font-size:12px;text-align:center" href="/blog/"><span style="position:relative;top:2px;font-size:16px">←</span> zurück zur Übersicht</a><div class="row"><div class="col-12"><h1>[Shop 15] Data Normalization</h1></div><div class="col-12"><article><p>Das Problem mit unserem Object Mapping ist, dass es bei 5 Einträgen kein Problem darstellt, bei 100.000 aber schon.</p>
+<p>Siehe: Hashtables vs Arrays</p>
+<p><a href="https://www.kirupa.com/html5/hashtables_vs_arrays.htm">https://www.kirupa.com/html5/hashtables_vs_arrays.htm</a></p>
+<p>Statt durch 100.000 Objekte zu filtern (was Zeit kostet), können wir das Objekt aber auch einfach umschreiben.</p>
+<p>Dazu gibt es hier eine nützliche UTIL Function:</p>
+<p><a href="https://dev.to/danielpdev/normalize-your-complex-js-objects-21d9">https://dev.to/danielpdev/normalize-your-complex-js-objects-21d9</a></p>
+<p>Für unseren Code werden wir allerdings das Objekt selbst verändern.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 600px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/static/7519857f5f1241d97a7b47ce12b3090b/41d8b/25-1.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 12.666666666666668%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAADABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAIF/8QAFgEBAQEAAAAAAAAAAAAAAAAAAgAB/9oADAMBAAIQAxAAAAHIoxBH/8QAFhAAAwAAAAAAAAAAAAAAAAAAAAEQ/9oACAEBAAEFAhT/xAAVEQEBAAAAAAAAAAAAAAAAAAABEP/aAAgBAwEBPwFn/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPwE//8QAFBABAAAAAAAAAAAAAAAAAAAAEP/aAAgBAQAGPwJ//8QAGBAAAgMAAAAAAAAAAAAAAAAAAAERIUH/2gAIAQEAAT8hbsySf//aAAwDAQACAAMAAAAQcA//xAAVEQEBAAAAAAAAAAAAAAAAAAAQMf/aAAgBAwEBPxCD/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPxA//8QAGhABAAIDAQAAAAAAAAAAAAAAAQAhETFBkf/aAAgBAQABPxBFXHem+kVnnhP/2Q=='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Screenshot"
+        title="Screenshot"
+        src="/blog/static/7519857f5f1241d97a7b47ce12b3090b/b4294/25-1.jpg"
+        srcset="/blog/static/7519857f5f1241d97a7b47ce12b3090b/75985/25-1.jpg 150w,
+/blog/static/7519857f5f1241d97a7b47ce12b3090b/f93b5/25-1.jpg 300w,
+/blog/static/7519857f5f1241d97a7b47ce12b3090b/b4294/25-1.jpg 600w,
+/blog/static/7519857f5f1241d97a7b47ce12b3090b/41d8b/25-1.jpg 735w"
+        sizes="(max-width: 600px) 100vw, 600px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 600px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/static/493cc7bb7ffe179ecd579d97f1508dd0/512c0/25-2.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 13.999999999999998%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAADABQDASIAAhEBAxEB/8QAFwABAAMAAAAAAAAAAAAAAAAAAAECBf/EABUBAQEAAAAAAAAAAAAAAAAAAAEA/9oADAMBAAIQAxAAAAHIgG4j/8QAFBABAAAAAAAAAAAAAAAAAAAAEP/aAAgBAQABBQJ//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPwE//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPwE//8QAFBABAAAAAAAAAAAAAAAAAAAAEP/aAAgBAQAGPwJ//8QAFhABAQEAAAAAAAAAAAAAAAAAAAEx/9oACAEBAAE/IUXX/9oADAMBAAIAAwAAABB4L//EABYRAAMAAAAAAAAAAAAAAAAAAAEQMf/aAAgBAwEBPxAxf//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQIBAT8QP//EABoQAAMAAwEAAAAAAAAAAAAAAAABESExgZH/2gAIAQEAAT8QaUsNuCq8Lw//2Q=='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Screenshot"
+        title="Screenshot"
+        src="/blog/static/493cc7bb7ffe179ecd579d97f1508dd0/b4294/25-2.jpg"
+        srcset="/blog/static/493cc7bb7ffe179ecd579d97f1508dd0/75985/25-2.jpg 150w,
+/blog/static/493cc7bb7ffe179ecd579d97f1508dd0/f93b5/25-2.jpg 300w,
+/blog/static/493cc7bb7ffe179ecd579d97f1508dd0/b4294/25-2.jpg 600w,
+/blog/static/493cc7bb7ffe179ecd579d97f1508dd0/512c0/25-2.jpg 675w"
+        sizes="(max-width: 600px) 100vw, 600px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 600px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/static/4f326a4567f0b2aaa1a2d528e9e25ab1/d80c4/25-3.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 20%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAEABQDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAX/xAAVAQEBAAAAAAAAAAAAAAAAAAABAP/aAAwDAQACEAMQAAABkAQj/8QAFBABAAAAAAAAAAAAAAAAAAAAEP/aAAgBAQABBQJ//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPwE//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPwE//8QAFBABAAAAAAAAAAAAAAAAAAAAEP/aAAgBAQAGPwJ//8QAFhABAQEAAAAAAAAAAAAAAAAAAQAQ/9oACAEBAAE/IWM//9oADAMBAAIAAwAAABB/z//EABYRAQEBAAAAAAAAAAAAAAAAAAEQIf/aAAgBAwEBPxBMn//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQIBAT8QP//EABoQAAICAwAAAAAAAAAAAAAAAAERACFRYZH/2gAIAQEAAT8QoSA4LbusxbPZ/9k='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Screenshot"
+        title="Screenshot"
+        src="/blog/static/4f326a4567f0b2aaa1a2d528e9e25ab1/b4294/25-3.jpg"
+        srcset="/blog/static/4f326a4567f0b2aaa1a2d528e9e25ab1/75985/25-3.jpg 150w,
+/blog/static/4f326a4567f0b2aaa1a2d528e9e25ab1/f93b5/25-3.jpg 300w,
+/blog/static/4f326a4567f0b2aaa1a2d528e9e25ab1/b4294/25-3.jpg 600w,
+/blog/static/4f326a4567f0b2aaa1a2d528e9e25ab1/d80c4/25-3.jpg 716w"
+        sizes="(max-width: 600px) 100vw, 600px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>Jetzt kann auch unsere teure Mapping Function weg.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 600px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/static/dcffce90b950cbc375624eb35da49e1c/d3cb4/25-4.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 52.66666666666667%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAALABQDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAAECBf/EABQBAQAAAAAAAAAAAAAAAAAAAAH/2gAMAwEAAhADEAAAAeSyGoT/xAAUEAEAAAAAAAAAAAAAAAAAAAAg/9oACAEBAAEFAl//xAAWEQEBAQAAAAAAAAAAAAAAAAABEBH/2gAIAQMBAT8BXZ//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/AT//xAAUEAEAAAAAAAAAAAAAAAAAAAAg/9oACAEBAAY/Al//xAAXEAADAQAAAAAAAAAAAAAAAAAAAREQ/9oACAEBAAE/IXtZWVn/2gAMAwEAAgADAAAAEIwP/8QAFhEBAQEAAAAAAAAAAAAAAAAAARAR/9oACAEDAQE/EFGM/8QAFhEBAQEAAAAAAAAAAAAAAAAAARAR/9oACAECAQE/EAyf/8QAGRAAAgMBAAAAAAAAAAAAAAAAAAERQVFh/9oACAEBAAE/EGl4hWOMOzIrZ0P/2Q=='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Screenshot"
+        title="Screenshot"
+        src="/blog/static/dcffce90b950cbc375624eb35da49e1c/b4294/25-4.jpg"
+        srcset="/blog/static/dcffce90b950cbc375624eb35da49e1c/75985/25-4.jpg 150w,
+/blog/static/dcffce90b950cbc375624eb35da49e1c/f93b5/25-4.jpg 300w,
+/blog/static/dcffce90b950cbc375624eb35da49e1c/b4294/25-4.jpg 600w,
+/blog/static/dcffce90b950cbc375624eb35da49e1c/8e1fc/25-4.jpg 900w,
+/blog/static/dcffce90b950cbc375624eb35da49e1c/d3cb4/25-4.jpg 1031w"
+        sizes="(max-width: 600px) 100vw, 600px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>Jetzt brauchen wir noch einen Selector, der das Objekt wieder in einem Array verwandelt, damit wir im Frontend später noch darüber Mappen können.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 600px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/static/6ef9778083d9f57bb8c1d04a6dbd11cc/88438/25-5.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 104.66666666666666%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAVABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAEF/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEAMQAAAByZYQFBAf/8QAFBABAAAAAAAAAAAAAAAAAAAAMP/aAAgBAQABBQIf/8QAFBEBAAAAAAAAAAAAAAAAAAAAIP/aAAgBAwEBPwEf/8QAFBEBAAAAAAAAAAAAAAAAAAAAIP/aAAgBAgEBPwEf/8QAFBABAAAAAAAAAAAAAAAAAAAAMP/aAAgBAQAGPwIf/8QAFhABAQEAAAAAAAAAAAAAAAAAARAA/9oACAEBAAE/IaOaz//aAAwDAQACAAMAAAAQwAgA/8QAFBEBAAAAAAAAAAAAAAAAAAAAIP/aAAgBAwEBPxAf/8QAFBEBAAAAAAAAAAAAAAAAAAAAIP/aAAgBAgEBPxAf/8QAHBABAAICAwEAAAAAAAAAAAAAAQARITFBcZFR/9oACAEBAAE/EOBqzuKOMex3hihQ1FzYy4B8PITYB1Kn/9k='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Screenshot"
+        title="Screenshot"
+        src="/blog/static/6ef9778083d9f57bb8c1d04a6dbd11cc/b4294/25-5.jpg"
+        srcset="/blog/static/6ef9778083d9f57bb8c1d04a6dbd11cc/75985/25-5.jpg 150w,
+/blog/static/6ef9778083d9f57bb8c1d04a6dbd11cc/f93b5/25-5.jpg 300w,
+/blog/static/6ef9778083d9f57bb8c1d04a6dbd11cc/b4294/25-5.jpg 600w,
+/blog/static/6ef9778083d9f57bb8c1d04a6dbd11cc/88438/25-5.jpg 745w"
+        sizes="(max-width: 600px) 100vw, 600px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p></article></div></div></div></div></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/article-25-shop-15-data-normalization/";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"polyfill":["/polyfill-2f533b7f1322894d1916.js"],"app":["/app-225160758adade3fa3f2.js"],"component---src-pages-404-js":["/component---src-pages-404-js-b6cff82b20efc5c765a6.js"],"component---src-pages-index-js":["/component---src-pages-index-js-67ea04f1708c39eeae81.js"],"component---src-templates-blog-post-js":["/component---src-templates-blog-post-js-4ecac0af02aa737e476c.js"]};/*]]>*/</script><script src="/blog/polyfill-2f533b7f1322894d1916.js" nomodule=""></script><script src="/blog/component---src-templates-blog-post-js-4ecac0af02aa737e476c.js" async=""></script><script src="/blog/commons-5568e36bad1ff202403a.js" async=""></script><script src="/blog/app-225160758adade3fa3f2.js" async=""></script><script src="/blog/framework-bee5b4b4fa37bec3e7c7.js" async=""></script><script src="/blog/webpack-runtime-b52e989569019ef1a593.js" async=""></script><script src="https://design-system.ebalance.dev/dist/js/header.js"></script><script src="https://design-system.ebalance.dev/dist/js/off-canvas.js"></script></body></html>

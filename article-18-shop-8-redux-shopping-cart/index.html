@@ -1,0 +1,429 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><style data-href="/blog/styles.26a9653a6e822f025180.css" id="gatsby-global-css">@import url(https://design-system.ebalance.dev/dist/css/index.min.css);body{padding-bottom:50px;background:#f7f8f9}.gatsby-resp-image-wrapper{margin:7px 0!important;border-radius:5px;border:1px solid #ccc;box-shadow:0 3px 8px rgb(0 0 0/.1);overflow:hidden}.panel{max-width:800px;margin:0 auto;padding:50px;overflow:unset}.blog-link{display:block;padding:20px;border-radius:4px;background:#f7f8f9;transition:.15s;cursor:pointer}.blog-link+.blog-link{margin-top:20px}.blog-link:hover{background:#e7e8e9}</style><meta name="generator" content="Gatsby 3.0.4"/><title data-react-helmet="true">[Shop 8] Toggle einrichten und (evtl. doppelte) Items hineinlegen | Oliver Knoblich</title><meta data-react-helmet="true" name="description" content="Blog von Oliver Knoblich"/><meta data-react-helmet="true" property="og:title" content="[Shop 8] Toggle einrichten und (evtl. doppelte) Items hineinlegen"/><meta data-react-helmet="true" property="og:description" content="Blog von Oliver Knoblich"/><meta data-react-helmet="true" property="og:type" content="website"/><meta data-react-helmet="true" name="twitter:card" content="summary"/><meta data-react-helmet="true" name="twitter:creator" content="Oliver Knoblich"/><meta data-react-helmet="true" name="twitter:title" content="[Shop 8] Toggle einrichten und (evtl. doppelte) Items hineinlegen"/><meta data-react-helmet="true" name="twitter:description" content="Blog von Oliver Knoblich"/><link as="script" rel="preload" href="/blog/webpack-runtime-b52e989569019ef1a593.js"/><link as="script" rel="preload" href="/blog/framework-bee5b4b4fa37bec3e7c7.js"/><link as="script" rel="preload" href="/blog/app-225160758adade3fa3f2.js"/><link as="script" rel="preload" href="/blog/commons-5568e36bad1ff202403a.js"/><link as="script" rel="preload" href="/blog/component---src-templates-blog-post-js-4ecac0af02aa737e476c.js"/><link as="fetch" rel="preload" href="/blog/page-data/article-18-shop-8-redux-shopping-cart/page-data.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/blog/page-data/sq/d/63159454.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/blog/page-data/app-data.json" crossorigin="anonymous"/></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><div class="header is-white"><div class="inner"><nav><ul><li><a href="/">Home</a></li><li><a href="/blog/" class="is-active">Blog</a></li></ul></nav><nav><ul><li><a href="/react-admin-panel/"><span class="react">React</span>Admin Panel</a></li><li><a href="/react-book-store/"><span class="react">React</span>Book Store</a></li><li><a href="/react-budget-list/"><span class="react">React</span>Budget List</a></li><li><a href="/react-github-find/"><span class="react">React</span>GitHub Find</a></li><li><a href="/sass-design-system/"><span class="sass">Sass</span>Design System</a></li><li class="offcanvas-toggle"><svg viewBox="0 0 100 100"><path class="line l1" d="m 70,33 h -40 c 0,0 -8.5,-0.149796 -8.5,8.5 0,8.649796 8.5,8.5 8.5,8.5 h 20 v -20"></path><path class="line l2" d="m 70,50 h -40"></path><path class="line l3" d="m 30,67 h 40 c 0,0 8.5,0.149796 8.5,-8.5 0,-8.649796 -8.5,-8.5 -8.5,-8.5 h -20 v 20"></path></svg></li></ul></nav></div></div><div class="offcanvas"><div class="inner"><nav><ul><li><a href="/">Home</a></li><li><a href="/blog/" class="is-active">Blog</a></li><li><a href="/react-admin-panel/"><span class="react">React</span> Admin Panel</a></li><li><a href="/react-book-store/"><span class="react">React</span> Book Store</a></li><li><a href="/react-budget-list/"><span class="react">React</span> Budget List</a></li><li><a href="/react-github-find/"><span class="react">React</span> GitHub Find</a></li><li><a href="/sass-design-system/"><span class="sass">Sass</span> Design System</a></li></ul></nav></div></div><div class="container"><h1 class="text-center my-5">Blog</h1><div class="panel is-high"><a style="position:absolute;top:-38px;left:0;width:100%;font-size:12px;text-align:center" href="/blog/"><span style="position:relative;top:2px;font-size:16px">←</span> zurück zur Übersicht</a><div class="row"><div class="col-12"><h1>[Shop 8] Toggle einrichten und (evtl. doppelte) Items hineinlegen</h1></div><div class="col-12"><article><p>Um eingeloggt nicht auf den Login zuzugreifen, Redirecten wir auf Home:</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 600px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/static/46b6f2301385cecde4e5a4f1519c3a96/0ff56/18-1.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 30%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAGABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAEF/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEAMQAAAByIAH/8QAFBABAAAAAAAAAAAAAAAAAAAAEP/aAAgBAQABBQJ//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPwE//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPwE//8QAFBABAAAAAAAAAAAAAAAAAAAAEP/aAAgBAQAGPwJ//8QAGRAAAQUAAAAAAAAAAAAAAAAAAQAQESFB/9oACAEBAAE/IZGhU3//2gAMAwEAAgADAAAAEAAP/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPxA//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPxA//8QAGxAAAQQDAAAAAAAAAAAAAAAAAAERIWExUZH/2gAIAQEAAT8QwSNY+i9Is//Z'); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Screenshot"
+        title="Screenshot"
+        src="/blog/static/46b6f2301385cecde4e5a4f1519c3a96/b4294/18-1.jpg"
+        srcset="/blog/static/46b6f2301385cecde4e5a4f1519c3a96/75985/18-1.jpg 150w,
+/blog/static/46b6f2301385cecde4e5a4f1519c3a96/f93b5/18-1.jpg 300w,
+/blog/static/46b6f2301385cecde4e5a4f1519c3a96/b4294/18-1.jpg 600w,
+/blog/static/46b6f2301385cecde4e5a4f1519c3a96/8e1fc/18-1.jpg 900w,
+/blog/static/46b6f2301385cecde4e5a4f1519c3a96/0ff56/18-1.jpg 925w"
+        sizes="(max-width: 600px) 100vw, 600px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>Best Practice: Alle ActionTypes in einem Objekt versammeln:</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 523px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/static/3be5370a66d89b31431a241d3b8372aa/8df40/18-2.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 154.66666666666666%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAfABQDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAAECBf/EABQBAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhADEAAAAeSDINRAg//EABUQAQEAAAAAAAAAAAAAAAAAACAB/9oACAEBAAEFAlF//8QAFBEBAAAAAAAAAAAAAAAAAAAAIP/aAAgBAwEBPwEf/8QAFBEBAAAAAAAAAAAAAAAAAAAAIP/aAAgBAgEBPwEf/8QAFRABAQAAAAAAAAAAAAAAAAAAIDH/2gAIAQEABj8CdP8A/8QAHBAAAQQDAQAAAAAAAAAAAAAAAAEQITERQVGB/9oACAEBAAE/IdSh4SJVE8dhyt//2gAMAwEAAgADAAAAELcEDP/EABQRAQAAAAAAAAAAAAAAAAAAACD/2gAIAQMBAT8QH//EABQRAQAAAAAAAAAAAAAAAAAAACD/2gAIAQIBAT8QH//EAB8QAAIBBAIDAAAAAAAAAAAAAAERACExUXEQQWGBof/aAAgBAQABPxAGhh0YTQogdx5fYw7PcJwvZi8wGwwKdhwjdJTJgKso1m+P/9k='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Screenshot"
+        title="Screenshot"
+        src="/blog/static/3be5370a66d89b31431a241d3b8372aa/8df40/18-2.jpg"
+        srcset="/blog/static/3be5370a66d89b31431a241d3b8372aa/75985/18-2.jpg 150w,
+/blog/static/3be5370a66d89b31431a241d3b8372aa/f93b5/18-2.jpg 300w,
+/blog/static/3be5370a66d89b31431a241d3b8372aa/8df40/18-2.jpg 523w"
+        sizes="(max-width: 523px) 100vw, 523px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>Jetzt wollen wir einen Einkaufswagen bauen der toggelt. Das HTML (bzw JSX) und CSS sind wie immer schnell gemacht. Aber: REDUX AUCH. Denn wir haben fast alles schon einmal geschrieben. Das heißt, wir COPY-PASTEN unseren Redux User Ordner und ersetzen „user“ mit „cart“. Dann verteilen wir ACTION und MAPSTATETOPROPS an die Stellen die es brauchen (CartIcon und Header).</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 600px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/static/cab94a1e41d246c530f2a44d67731e3a/c60f3/18-3.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 130.66666666666666%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAaABQDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAQACBf/EABUBAQEAAAAAAAAAAAAAAAAAAAAB/9oADAMBAAIQAxAAAAHkiBUazoQiX//EABYQAAMAAAAAAAAAAAAAAAAAAAEQMP/aAAgBAQABBQKRX//EABQRAQAAAAAAAAAAAAAAAAAAACD/2gAIAQMBAT8BH//EABQRAQAAAAAAAAAAAAAAAAAAACD/2gAIAQIBAT8BH//EABQQAQAAAAAAAAAAAAAAAAAAADD/2gAIAQEABj8CT//EABsQAAIBBQAAAAAAAAAAAAAAAAEQIQARIDGB/9oACAEBAAE/IRgSrRNcQ03/2gAMAwEAAgADAAAAEHAGTP/EABQRAQAAAAAAAAAAAAAAAAAAACD/2gAIAQMBAT8QH//EABQRAQAAAAAAAAAAAAAAAAAAACD/2gAIAQIBAT8QH//EAB0QAQACAgIDAAAAAAAAAAAAAAEAESExYaEQUZH/2gAIAQEAAT8Q0tr6R1vsl8sCgvqIGGZ4hSgeMxA1FPqN7+X/2Q=='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Screenshot"
+        title="Screenshot"
+        src="/blog/static/cab94a1e41d246c530f2a44d67731e3a/b4294/18-3.jpg"
+        srcset="/blog/static/cab94a1e41d246c530f2a44d67731e3a/75985/18-3.jpg 150w,
+/blog/static/cab94a1e41d246c530f2a44d67731e3a/f93b5/18-3.jpg 300w,
+/blog/static/cab94a1e41d246c530f2a44d67731e3a/b4294/18-3.jpg 600w,
+/blog/static/cab94a1e41d246c530f2a44d67731e3a/c60f3/18-3.jpg 636w"
+        sizes="(max-width: 600px) 100vw, 600px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 447px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/static/c6d268dea85ebe439048c54a8c4f4b1d/f6339/18-4.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 116.00000000000001%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAXABQDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAAIBBf/EABQBAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhADEAAAAeTgS0UCQf/EABQQAQAAAAAAAAAAAAAAAAAAADD/2gAIAQEAAQUCH//EABQRAQAAAAAAAAAAAAAAAAAAACD/2gAIAQMBAT8BH//EABQRAQAAAAAAAAAAAAAAAAAAACD/2gAIAQIBAT8BH//EABYQAAMAAAAAAAAAAAAAAAAAABAgMf/aAAgBAQAGPwJof//EABsQAQACAgMAAAAAAAAAAAAAAAEAEBEhMVGB/9oACAEBAAE/ITiOaNE8KIw9Ff/aAAwDAQACAAMAAAAQcwgA/8QAFREBAQAAAAAAAAAAAAAAAAAAESD/2gAIAQMBAT8QI//EABURAQEAAAAAAAAAAAAAAAAAABAB/9oACAECAQE/ECn/xAAeEAEAAgEEAwAAAAAAAAAAAAABABEhEDFBYVGBkf/aAAgBAQABPxBruPcIzeHxoGzGeEjgYr0fJSgo9sW4IiKM/9k='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Screenshot"
+        title="Screenshot"
+        src="/blog/static/c6d268dea85ebe439048c54a8c4f4b1d/f6339/18-4.jpg"
+        srcset="/blog/static/c6d268dea85ebe439048c54a8c4f4b1d/75985/18-4.jpg 150w,
+/blog/static/c6d268dea85ebe439048c54a8c4f4b1d/f93b5/18-4.jpg 300w,
+/blog/static/c6d268dea85ebe439048c54a8c4f4b1d/f6339/18-4.jpg 447w"
+        sizes="(max-width: 447px) 100vw, 447px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>Schon toggelt unser Einkaufswagen.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 600px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/static/3e31eefa87fae662537a3c43a853aef3/2c956/18-5.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 50%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAKABQDASIAAhEBAxEB/8QAGAAAAgMAAAAAAAAAAAAAAAAAAAQBAgX/xAAUAQEAAAAAAAAAAAAAAAAAAAAB/9oADAMBAAIQAxAAAAHZuk6kgD//xAAZEAACAwEAAAAAAAAAAAAAAAAAAQMhQTL/2gAIAQEAAQUCpvSPvT//xAAWEQEBAQAAAAAAAAAAAAAAAAABEBH/2gAIAQMBAT8BHZ//xAAWEQEBAQAAAAAAAAAAAAAAAAABEBH/2gAIAQIBAT8BTJ//xAAVEAEBAAAAAAAAAAAAAAAAAAABEP/aAAgBAQAGPwIaX//EABoQAQADAAMAAAAAAAAAAAAAAAEAECExgfD/2gAIAQEAAT8hBFqcbQ9sJ00J/9oADAMBAAIAAwAAABDwD//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQMBAT8QB//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQIBAT8QJ//EABsQAAIDAAMAAAAAAAAAAAAAAAERACExQWGx/9oACAEBAAE/EGoktsMQ8BUAXQ2HBBoWuoPUAXQ2f//Z'); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Screenshot"
+        title="Screenshot"
+        src="/blog/static/3e31eefa87fae662537a3c43a853aef3/b4294/18-5.jpg"
+        srcset="/blog/static/3e31eefa87fae662537a3c43a853aef3/75985/18-5.jpg 150w,
+/blog/static/3e31eefa87fae662537a3c43a853aef3/f93b5/18-5.jpg 300w,
+/blog/static/3e31eefa87fae662537a3c43a853aef3/b4294/18-5.jpg 600w,
+/blog/static/3e31eefa87fae662537a3c43a853aef3/2c956/18-5.jpg 738w"
+        sizes="(max-width: 600px) 100vw, 600px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>Jetzt wollen wir Items hinzufügen, sobald wir im UI auf einen der „Add to Cart“ Buttons klicken. Dazu COPY-PASTEN wir vieles von unserem Redux Code und passen es so an, dass es ADD_ITEM triggert.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 531px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/static/ca0a5426f2f93136ac8660ba79d17557/135f3/18-6.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 153.33333333333331%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAfABQDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAAECBf/EABUBAQEAAAAAAAAAAAAAAAAAAAAB/9oADAMBAAIQAxAAAAHkgyg0CCP/xAAUEAEAAAAAAAAAAAAAAAAAAAAw/9oACAEBAAEFAk//xAAUEQEAAAAAAAAAAAAAAAAAAAAg/9oACAEDAQE/AR//xAAUEQEAAAAAAAAAAAAAAAAAAAAg/9oACAECAQE/AR//xAAUEAEAAAAAAAAAAAAAAAAAAAAw/9oACAEBAAY/Ak//xAAdEAACAgEFAAAAAAAAAAAAAAAAARAhMRFBcYHw/9oACAEBAAE/IVi0PiFgfqhXudwjUo//2gAMAwEAAgADAAAAEIPKD//EABYRAAMAAAAAAAAAAAAAAAAAAAAQEf/aAAgBAwEBPxBw/8QAFBEBAAAAAAAAAAAAAAAAAAAAIP/aAAgBAgEBPxAf/8QAHxAAAwABBAMBAAAAAAAAAAAAAAERIVFhcYExQZGx/9oACAEBAAE/EIijexWZBnUWI3jqjYwk30I9DE1+KM3dnuNH5b+F5cn/2Q=='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Screenshot"
+        title="Screenshot"
+        src="/blog/static/ca0a5426f2f93136ac8660ba79d17557/135f3/18-6.jpg"
+        srcset="/blog/static/ca0a5426f2f93136ac8660ba79d17557/75985/18-6.jpg 150w,
+/blog/static/ca0a5426f2f93136ac8660ba79d17557/f93b5/18-6.jpg 300w,
+/blog/static/ca0a5426f2f93136ac8660ba79d17557/135f3/18-6.jpg 531w"
+        sizes="(max-width: 531px) 100vw, 531px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>Jetzt müssen wir es nur noch in unseren CATEGORY ITEM hinzufügen und triggern, sobald man auf einen Button klickt.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 600px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/static/b56b22383bc5618ccd34fda690c78799/29d31/18-7.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 97.33333333333333%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAATABQDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAAECBf/EABUBAQEAAAAAAAAAAAAAAAAAAAAB/9oADAMBAAIQAxAAAAHkywgNCXIs/8QAFBABAAAAAAAAAAAAAAAAAAAAMP/aAAgBAQABBQIf/8QAFBEBAAAAAAAAAAAAAAAAAAAAIP/aAAgBAwEBPwEf/8QAFBEBAAAAAAAAAAAAAAAAAAAAIP/aAAgBAgEBPwEf/8QAFBABAAAAAAAAAAAAAAAAAAAAMP/aAAgBAQAGPwIf/8QAGRAAAgMBAAAAAAAAAAAAAAAAAAEQIEFx/9oACAEBAAE/IcHC4Ov/2gAMAwEAAgADAAAAEPTAwP/EABQRAQAAAAAAAAAAAAAAAAAAACD/2gAIAQMBAT8QH//EABQRAQAAAAAAAAAAAAAAAAAAACD/2gAIAQIBAT8QH//EAB4QAQACAQQDAAAAAAAAAAAAAAEAEVEQITGBcaHh/9oACAEBAAE/EBv4mzlR8S3LNg2nqAxXU2z6hxKMGn//2Q=='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Screenshot"
+        title="Screenshot"
+        src="/blog/static/b56b22383bc5618ccd34fda690c78799/b4294/18-7.jpg"
+        srcset="/blog/static/b56b22383bc5618ccd34fda690c78799/75985/18-7.jpg 150w,
+/blog/static/b56b22383bc5618ccd34fda690c78799/f93b5/18-7.jpg 300w,
+/blog/static/b56b22383bc5618ccd34fda690c78799/b4294/18-7.jpg 600w,
+/blog/static/b56b22383bc5618ccd34fda690c78799/29d31/18-7.jpg 700w"
+        sizes="(max-width: 600px) 100vw, 600px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>Und schon landet das Object im Redux Store, wie man in der Konsole sehen kann.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 600px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/static/7cdb61c39de9fcc20e798a0316bad155/d60a6/18-8.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 48.666666666666664%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAKABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAQF/8QAFAEBAAAAAAAAAAAAAAAAAAAAAf/aAAwDAQACEAMQAAABs0ZLEAf/xAAaEAABBQEAAAAAAAAAAAAAAAACAAMQETFB/9oACAEBAAEFAmSK+odj/8QAFhEBAQEAAAAAAAAAAAAAAAAAARAR/9oACAEDAQE/AR2f/8QAFhEBAQEAAAAAAAAAAAAAAAAAARAR/9oACAECAQE/AUyf/8QAGBAAAwEBAAAAAAAAAAAAAAAAAQIQESH/2gAIAQEABj8CXSe1b//EABoQAQEAAgMAAAAAAAAAAAAAAAEAEBExYaH/2gAIAQEAAT8hf3UO5he6ecf/2gAMAwEAAgADAAAAEOvP/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPxAH/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPxAn/8QAGxABAAICAwAAAAAAAAAAAAAAAQARITFBUaH/2gAIAQEAAT8Qvml6iBvt0TROWHc9SERcADAT/9k='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Screenshot"
+        title="Screenshot"
+        src="/blog/static/7cdb61c39de9fcc20e798a0316bad155/b4294/18-8.jpg"
+        srcset="/blog/static/7cdb61c39de9fcc20e798a0316bad155/75985/18-8.jpg 150w,
+/blog/static/7cdb61c39de9fcc20e798a0316bad155/f93b5/18-8.jpg 300w,
+/blog/static/7cdb61c39de9fcc20e798a0316bad155/b4294/18-8.jpg 600w,
+/blog/static/7cdb61c39de9fcc20e798a0316bad155/8e1fc/18-8.jpg 900w,
+/blog/static/7cdb61c39de9fcc20e798a0316bad155/d60a6/18-8.jpg 954w"
+        sizes="(max-width: 600px) 100vw, 600px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>Jetzt müssen wir dafür sorgen, dass doppelte ITEMs als das selbe Item hinzugefügt werden, nur in höherer Anzahl. Wir coden dazu eine UTIL Function.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 600px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/static/28860d56731a2feb8c166eb57d5d6a07/3f8a9/18-9.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 51.33333333333333%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAKABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAQAF/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEAMQAAAByQBiP//EABQQAQAAAAAAAAAAAAAAAAAAACD/2gAIAQEAAQUCX//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQMBAT8BP//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQIBAT8BP//EABQQAQAAAAAAAAAAAAAAAAAAACD/2gAIAQEABj8CX//EABgQAAIDAAAAAAAAAAAAAAAAAAAgMUHw/9oACAEBAAE/IaNC/wD/2gAMAwEAAgADAAAAEDPP/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPxA//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPxA//8QAHBAAAgEFAQAAAAAAAAAAAAAAAAExEBFBYXGh/9oACAEBAAE/EE8p4Ni+/BxX/9k='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Screenshot"
+        title="Screenshot"
+        src="/blog/static/28860d56731a2feb8c166eb57d5d6a07/b4294/18-9.jpg"
+        srcset="/blog/static/28860d56731a2feb8c166eb57d5d6a07/75985/18-9.jpg 150w,
+/blog/static/28860d56731a2feb8c166eb57d5d6a07/f93b5/18-9.jpg 300w,
+/blog/static/28860d56731a2feb8c166eb57d5d6a07/b4294/18-9.jpg 600w,
+/blog/static/28860d56731a2feb8c166eb57d5d6a07/3f8a9/18-9.jpg 855w"
+        sizes="(max-width: 600px) 100vw, 600px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>WAS PASSIERT HIER? Wir checken erstmal ob 2 übereinstimmende IDs gefunden werden. Wenn nein, gib den originalen Array zurück, füge aber das neue Items hinzu, und füge diesem neuen Item eine Quantity von 1 hinzu. Wenn ja, laufe alle Items einmal durch und checke welches doppelt ist. Wird eines gefunden, wird es aufgespreaded und die Quantity wird um eines erhöht.</p>
+<p>Das verpacken wir jetzt in unserem Reducer:</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 592px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/static/8d1a64925ee6d40f159fafeb83f46720/694d5/18-10.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 106%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAVABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAEF/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEAMQAAAByZYQFgAf/8QAFxAAAwEAAAAAAAAAAAAAAAAAARARIP/aAAgBAQABBQKsa//EABQRAQAAAAAAAAAAAAAAAAAAACD/2gAIAQMBAT8BH//EABQRAQAAAAAAAAAAAAAAAAAAACD/2gAIAQIBAT8BH//EABQQAQAAAAAAAAAAAAAAAAAAADD/2gAIAQEABj8CH//EABoQAAICAwAAAAAAAAAAAAAAAAARASEQIGH/2gAIAQEAAT8hilj4PCWLT//aAAwDAQACAAMAAAAQ0NgA/8QAFxEAAwEAAAAAAAAAAAAAAAAAAAEQEf/aAAgBAwEBPxAx3//EABQRAQAAAAAAAAAAAAAAAAAAACD/2gAIAQIBAT8QH//EABwQAQACAgMBAAAAAAAAAAAAAAEAESFhMUFRgf/aAAgBAQABPxDkZJFoxb1iS8sHS62S8DbmJSlz7P/Z'); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Screenshot"
+        title="Screenshot"
+        src="/blog/static/8d1a64925ee6d40f159fafeb83f46720/694d5/18-10.jpg"
+        srcset="/blog/static/8d1a64925ee6d40f159fafeb83f46720/75985/18-10.jpg 150w,
+/blog/static/8d1a64925ee6d40f159fafeb83f46720/f93b5/18-10.jpg 300w,
+/blog/static/8d1a64925ee6d40f159fafeb83f46720/694d5/18-10.jpg 592w"
+        sizes="(max-width: 592px) 100vw, 592px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>Und schon erhöht sich die Quantity.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 427px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/static/b9d9aea10c40625eb123a412efe5e6f1/141dd/18-11.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 65.33333333333333%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAANABQDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAAIBBf/EABUBAQEAAAAAAAAAAAAAAAAAAAAB/9oADAMBAAIQAxAAAAHtbN2Af//EABUQAQEAAAAAAAAAAAAAAAAAABAB/9oACAEBAAEFAmv/xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/AT//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/AT//xAAUEAEAAAAAAAAAAAAAAAAAAAAg/9oACAEBAAY/Al//xAAZEAADAAMAAAAAAAAAAAAAAAAAAREQITH/2gAIAQEAAT8hrTLoR1n/2gAMAwEAAgADAAAAEOTP/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPxA//8QAFREBAQAAAAAAAAAAAAAAAAAAEBH/2gAIAQIBAT8Qh//EABwQAQACAQUAAAAAAAAAAAAAAAEAESEQMWGRof/aAAgBAQABPxBQtM5IhpZniOih8i6w20//2Q=='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Screenshot"
+        title="Screenshot"
+        src="/blog/static/b9d9aea10c40625eb123a412efe5e6f1/141dd/18-11.jpg"
+        srcset="/blog/static/b9d9aea10c40625eb123a412efe5e6f1/75985/18-11.jpg 150w,
+/blog/static/b9d9aea10c40625eb123a412efe5e6f1/f93b5/18-11.jpg 300w,
+/blog/static/b9d9aea10c40625eb123a412efe5e6f1/141dd/18-11.jpg 427w"
+        sizes="(max-width: 427px) 100vw, 427px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>Jetzt müssen wir nur noch den ITEM ARRAY aus dem REDUX STORE in unserem CART DROPDOWN anzeigen. Dazu editieren wir nur CART ITEM und CART DROPDOWN. Denn nur diese Compontents benötigen den REDUX STORE:</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 600px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/static/f6440b3c8e2699bf2e676f9250972131/b28e6/18-12.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 134%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAbABQDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAAIBBf/EABUBAQEAAAAAAAAAAAAAAAAAAAAB/9oADAMBAAIQAxAAAAHkmGAqakCX/8QAFBABAAAAAAAAAAAAAAAAAAAAMP/aAAgBAQABBQJP/8QAFBEBAAAAAAAAAAAAAAAAAAAAIP/aAAgBAwEBPwEf/8QAFBEBAAAAAAAAAAAAAAAAAAAAIP/aAAgBAgEBPwEf/8QAFBABAAAAAAAAAAAAAAAAAAAAMP/aAAgBAQAGPwJP/8QAGhAAAgMBAQAAAAAAAAAAAAAAARAAEWFRcf/aAAgBAQABPyEHsOKpWhCHxB//2gAMAwEAAgADAAAAELQEf//EABcRAAMBAAAAAAAAAAAAAAAAAAABEBH/2gAIAQMBAT8Qqw//xAAUEQEAAAAAAAAAAAAAAAAAAAAg/9oACAECAQE/EB//xAAcEAEBAQACAwEAAAAAAAAAAAABEQAhMUFxgaH/2gAIAQEAAT8QCQUyPCZW944HH659D7p60xpkXgYj4MBlz3rN/9k='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Screenshot"
+        title="Screenshot"
+        src="/blog/static/f6440b3c8e2699bf2e676f9250972131/b4294/18-12.jpg"
+        srcset="/blog/static/f6440b3c8e2699bf2e676f9250972131/75985/18-12.jpg 150w,
+/blog/static/f6440b3c8e2699bf2e676f9250972131/f93b5/18-12.jpg 300w,
+/blog/static/f6440b3c8e2699bf2e676f9250972131/b4294/18-12.jpg 600w,
+/blog/static/f6440b3c8e2699bf2e676f9250972131/b28e6/18-12.jpg 626w"
+        sizes="(max-width: 600px) 100vw, 600px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>Um dem Counter die korrekte Anzahl an Items zu geben, nutzen wir REDUCE und addieren alle QUANTITIES zusammen.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 600px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/static/1e39ed689f0f887b4f0528c1073a54e6/fdf97/18-13.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 64.66666666666666%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAANABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAEF/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEAMQAAAByYEB/8QAFBABAAAAAAAAAAAAAAAAAAAAIP/aAAgBAQABBQJf/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPwE//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPwE//8QAFBABAAAAAAAAAAAAAAAAAAAAIP/aAAgBAQAGPwJf/8QAGBABAAMBAAAAAAAAAAAAAAAAAQAQESH/2gAIAQEAAT8h7kSti1//2gAMAwEAAgADAAAAEMQP/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPxA//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPxA//8QAHBABAAEEAwAAAAAAAAAAAAAAAQAQEUGBIVFh/9oACAEBAAE/EA7J6X0xDDeGKcagOKf/2Q=='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Screenshot"
+        title="Screenshot"
+        src="/blog/static/1e39ed689f0f887b4f0528c1073a54e6/b4294/18-13.jpg"
+        srcset="/blog/static/1e39ed689f0f887b4f0528c1073a54e6/75985/18-13.jpg 150w,
+/blog/static/1e39ed689f0f887b4f0528c1073a54e6/f93b5/18-13.jpg 300w,
+/blog/static/1e39ed689f0f887b4f0528c1073a54e6/b4294/18-13.jpg 600w,
+/blog/static/1e39ed689f0f887b4f0528c1073a54e6/fdf97/18-13.jpg 724w"
+        sizes="(max-width: 600px) 100vw, 600px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>Und fertig ist der Shopping Cart.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 296px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/static/a251cebd76b04d9e570f825e11392a7a/0a040/18-14.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 171.33333333333331%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAiABQDASIAAhEBAxEB/8QAGQAAAwEBAQAAAAAAAAAAAAAAAAQFAQMC/8QAFgEAAwAAAAAAAAAAAAAAAAAAAAED/9oADAMBAAIQAxAAAAGrqdMOZ1Aj2I9Bpg8CamBaTIEaf//EAB4QAAIABgMAAAAAAAAAAAAAAAECAAMQERITFCMy/9oACAEBAAEFAtwydWdZSlFC94ojjkg3oqIJu5YU5CwiwiX5/8QAFxEAAwEAAAAAAAAAAAAAAAAAAAEQEv/aAAgBAwEBPwGaVR//xAAXEQADAQAAAAAAAAAAAAAAAAAAARAS/9oACAECAQE/AZl1n//EAB4QAAEEAwADAAAAAAAAAAAAAAIAARAREjFBIVFh/9oACAEBAAY/AsfNqhNx+qiJyTFe+S3vVTm7la6raNR//8QAHhABAAICAgMBAAAAAAAAAAAAAQARITFBUWGBkaH/2gAIAQEAAT8hNtY1qEkF3SJEt7YYwqrwjHROWBzKgwE6E5YfqrdVO/8AEPgmKOieJ8mHtP/aAAwDAQACAAMAAAAQEAmMc/8A/8QAGREAAgMBAAAAAAAAAAAAAAAAAAEQITFB/9oACAEDAQE/EIbOisemEf/EABkRAAIDAQAAAAAAAAAAAAAAAAABECExUf/aAAgBAgEBPxCFwHVCw0z/xAAfEAEAAgICAgMAAAAAAAAAAAABABEhMVGhYcFBcfH/2gAIAQEAAT8QebKSLoTzWvMIbbhylOHXPUvjm/OFGJiwycwrm+Za4jmodvonDuwjF7u95ubAg5YdvolMt6wmtalRgCV1t2LKiBWXak/FQiAUGh9E/9k='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Screenshot"
+        title="Screenshot"
+        src="/blog/static/a251cebd76b04d9e570f825e11392a7a/0a040/18-14.jpg"
+        srcset="/blog/static/a251cebd76b04d9e570f825e11392a7a/75985/18-14.jpg 150w,
+/blog/static/a251cebd76b04d9e570f825e11392a7a/0a040/18-14.jpg 296w"
+        sizes="(max-width: 296px) 100vw, 296px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p></article></div></div></div></div></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/article-18-shop-8-redux-shopping-cart/";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"polyfill":["/polyfill-2f533b7f1322894d1916.js"],"app":["/app-225160758adade3fa3f2.js"],"component---src-pages-404-js":["/component---src-pages-404-js-b6cff82b20efc5c765a6.js"],"component---src-pages-index-js":["/component---src-pages-index-js-67ea04f1708c39eeae81.js"],"component---src-templates-blog-post-js":["/component---src-templates-blog-post-js-4ecac0af02aa737e476c.js"]};/*]]>*/</script><script src="/blog/polyfill-2f533b7f1322894d1916.js" nomodule=""></script><script src="/blog/component---src-templates-blog-post-js-4ecac0af02aa737e476c.js" async=""></script><script src="/blog/commons-5568e36bad1ff202403a.js" async=""></script><script src="/blog/app-225160758adade3fa3f2.js" async=""></script><script src="/blog/framework-bee5b4b4fa37bec3e7c7.js" async=""></script><script src="/blog/webpack-runtime-b52e989569019ef1a593.js" async=""></script><script src="https://design-system.ebalance.dev/dist/js/header.js"></script><script src="https://design-system.ebalance.dev/dist/js/off-canvas.js"></script></body></html>

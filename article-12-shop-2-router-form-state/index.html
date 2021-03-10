@@ -1,0 +1,485 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><style data-href="/blog/styles.26a9653a6e822f025180.css" id="gatsby-global-css">@import url(https://design-system.ebalance.dev/dist/css/index.min.css);body{padding-bottom:50px;background:#f7f8f9}.gatsby-resp-image-wrapper{margin:7px 0!important;border-radius:5px;border:1px solid #ccc;box-shadow:0 3px 8px rgb(0 0 0/.1);overflow:hidden}.panel{max-width:800px;margin:0 auto;padding:50px;overflow:unset}.blog-link{display:block;padding:20px;border-radius:4px;background:#f7f8f9;transition:.15s;cursor:pointer}.blog-link+.blog-link{margin-top:20px}.blog-link:hover{background:#e7e8e9}</style><meta name="generator" content="Gatsby 3.0.4"/><title data-react-helmet="true">[Shop 2] React Router, Form Components, Input State | Oliver Knoblich</title><meta data-react-helmet="true" name="description" content="Blog von Oliver Knoblich"/><meta data-react-helmet="true" property="og:title" content="[Shop 2] React Router, Form Components, Input State"/><meta data-react-helmet="true" property="og:description" content="Blog von Oliver Knoblich"/><meta data-react-helmet="true" property="og:type" content="website"/><meta data-react-helmet="true" name="twitter:card" content="summary"/><meta data-react-helmet="true" name="twitter:creator" content="Oliver Knoblich"/><meta data-react-helmet="true" name="twitter:title" content="[Shop 2] React Router, Form Components, Input State"/><meta data-react-helmet="true" name="twitter:description" content="Blog von Oliver Knoblich"/><link as="script" rel="preload" href="/blog/webpack-runtime-b52e989569019ef1a593.js"/><link as="script" rel="preload" href="/blog/framework-bee5b4b4fa37bec3e7c7.js"/><link as="script" rel="preload" href="/blog/app-225160758adade3fa3f2.js"/><link as="script" rel="preload" href="/blog/commons-5568e36bad1ff202403a.js"/><link as="script" rel="preload" href="/blog/component---src-templates-blog-post-js-4ecac0af02aa737e476c.js"/><link as="fetch" rel="preload" href="/blog/page-data/article-12-shop-2-router-form-state/page-data.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/blog/page-data/sq/d/63159454.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/blog/page-data/app-data.json" crossorigin="anonymous"/></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><div class="header is-white"><div class="inner"><nav><ul><li><a href="/">Home</a></li><li><a href="/blog/" class="is-active">Blog</a></li></ul></nav><nav><ul><li><a href="/react-admin-panel/"><span class="react">React</span>Admin Panel</a></li><li><a href="/react-book-store/"><span class="react">React</span>Book Store</a></li><li><a href="/react-budget-list/"><span class="react">React</span>Budget List</a></li><li><a href="/react-github-find/"><span class="react">React</span>GitHub Find</a></li><li><a href="/sass-design-system/"><span class="sass">Sass</span>Design System</a></li><li class="offcanvas-toggle"><svg viewBox="0 0 100 100"><path class="line l1" d="m 70,33 h -40 c 0,0 -8.5,-0.149796 -8.5,8.5 0,8.649796 8.5,8.5 8.5,8.5 h 20 v -20"></path><path class="line l2" d="m 70,50 h -40"></path><path class="line l3" d="m 30,67 h 40 c 0,0 8.5,0.149796 8.5,-8.5 0,-8.649796 -8.5,-8.5 -8.5,-8.5 h -20 v 20"></path></svg></li></ul></nav></div></div><div class="offcanvas"><div class="inner"><nav><ul><li><a href="/">Home</a></li><li><a href="/blog/" class="is-active">Blog</a></li><li><a href="/react-admin-panel/"><span class="react">React</span> Admin Panel</a></li><li><a href="/react-book-store/"><span class="react">React</span> Book Store</a></li><li><a href="/react-budget-list/"><span class="react">React</span> Budget List</a></li><li><a href="/react-github-find/"><span class="react">React</span> GitHub Find</a></li><li><a href="/sass-design-system/"><span class="sass">Sass</span> Design System</a></li></ul></nav></div></div><div class="container"><h1 class="text-center my-5">Blog</h1><div class="panel is-high"><a style="position:absolute;top:-38px;left:0;width:100%;font-size:12px;text-align:center" href="/blog/"><span style="position:relative;top:2px;font-size:16px">←</span> zurück zur Übersicht</a><div class="row"><div class="col-12"><h1>[Shop 2] React Router, Form Components, Input State</h1></div><div class="col-12"><article><p>Wir installieren react-router-dom.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 222px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/static/f4e1f0f0a14e3711cee07b5d70f25547/083c4/12-1.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 18.666666666666668%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAEABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAIF/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEAMQAAAByJCQf//EABcQAAMBAAAAAAAAAAAAAAAAAAABEBH/2gAIAQEAAQUC2M//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/AT//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/AT//xAAVEAEBAAAAAAAAAAAAAAAAAAAAMf/aAAgBAQAGPwJEf//EABgQAQADAQAAAAAAAAAAAAAAAAEAESFx/9oACAEBAAE/IeCIWxTMT//aAAwDAQACAAMAAAAQc8//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/ED//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/ED//xAAaEAEAAwEBAQAAAAAAAAAAAAABABEhMWHR/9oACAEBAAE/EB0OlLyJRF96/YhgM9n/2Q=='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Screenshot"
+        title="Screenshot"
+        src="/blog/static/f4e1f0f0a14e3711cee07b5d70f25547/083c4/12-1.jpg"
+        srcset="/blog/static/f4e1f0f0a14e3711cee07b5d70f25547/75985/12-1.jpg 150w,
+/blog/static/f4e1f0f0a14e3711cee07b5d70f25547/083c4/12-1.jpg 222w"
+        sizes="(max-width: 222px) 100vw, 222px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>Wir importieren BrowserRouter und wrappen die gesamte App darum.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 474px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/static/2bec8a1b496a46a63f9c2faeeb46cede/08ff2/12-2.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 83.33333333333334%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAARABQDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAAECBf/EABQBAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhADEAAAAeTLkIAAP//EABQQAQAAAAAAAAAAAAAAAAAAADD/2gAIAQEAAQUCH//EABQRAQAAAAAAAAAAAAAAAAAAACD/2gAIAQMBAT8BH//EABQRAQAAAAAAAAAAAAAAAAAAACD/2gAIAQIBAT8BH//EABQQAQAAAAAAAAAAAAAAAAAAADD/2gAIAQEABj8CH//EABsQAAIBBQAAAAAAAAAAAAAAAAABERAgQWFx/9oACAEBAAE/IVscUTjI+2//2gAMAwEAAgADAAAAEJDPPP/EABQRAQAAAAAAAAAAAAAAAAAAACD/2gAIAQMBAT8QH//EABQRAQAAAAAAAAAAAAAAAAAAACD/2gAIAQIBAT8QH//EABwQAQACAQUAAAAAAAAAAAAAAAEAEUEgITFxgf/aAAgBAQABPxBCbL6iwUiuGFypAWpbzT//2Q=='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Screenshot"
+        title="Screenshot"
+        src="/blog/static/2bec8a1b496a46a63f9c2faeeb46cede/08ff2/12-2.jpg"
+        srcset="/blog/static/2bec8a1b496a46a63f9c2faeeb46cede/75985/12-2.jpg 150w,
+/blog/static/2bec8a1b496a46a63f9c2faeeb46cede/f93b5/12-2.jpg 300w,
+/blog/static/2bec8a1b496a46a63f9c2faeeb46cede/08ff2/12-2.jpg 474w"
+        sizes="(max-width: 474px) 100vw, 474px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>Wir importieren Switch und Route und nutzen es um zwischen Pages zu navigieren.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 452px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/static/2fb606f834508aaa0d88f4c51af0823c/d39fa/12-3.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 84%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAARABQDASIAAhEBAxEB/8QAGAABAQEBAQAAAAAAAAAAAAAAAAIBAwX/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIQAxAAAAHyZ0S0XzAD/8QAFRABAQAAAAAAAAAAAAAAAAAAIBH/2gAIAQEAAQUCFP8A/8QAFBEBAAAAAAAAAAAAAAAAAAAAIP/aAAgBAwEBPwEf/8QAFBEBAAAAAAAAAAAAAAAAAAAAIP/aAAgBAgEBPwEf/8QAFBABAAAAAAAAAAAAAAAAAAAAMP/aAAgBAQAGPwIf/8QAGRAAAwADAAAAAAAAAAAAAAAAAAERECAh/9oACAEBAAE/IbwuE4UN3T//2gAMAwEAAgADAAAAEEMHfP/EABURAQEAAAAAAAAAAAAAAAAAABAB/9oACAEDAQE/ECn/xAAUEQEAAAAAAAAAAAAAAAAAAAAg/9oACAECAQE/EB//xAAeEAACAgEFAQAAAAAAAAAAAAABEQAhkRAxUYHB8P/aAAgBAQABPxCrv7EQ2Qz1CWaiBQs3ALjEITO8Hnmv/9k='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Screenshot"
+        title="Screenshot"
+        src="/blog/static/2fb606f834508aaa0d88f4c51af0823c/d39fa/12-3.jpg"
+        srcset="/blog/static/2fb606f834508aaa0d88f4c51af0823c/75985/12-3.jpg 150w,
+/blog/static/2fb606f834508aaa0d88f4c51af0823c/f93b5/12-3.jpg 300w,
+/blog/static/2fb606f834508aaa0d88f4c51af0823c/d39fa/12-3.jpg 452w"
+        sizes="(max-width: 452px) 100vw, 452px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>Damit wir kein Prop Drilling veranstalten müssen und trotzdem alle Childs Zugang zum Router haben, importieren wie withRouter wo wir es brauchen und exportieren die Component damit.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 600px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/static/c281c06e37f8f2d3c9020da303dfa6f4/3f6a4/12-4.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 73.33333333333334%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAPABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAQAF/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEAMQAAAByggiP//EABYQAAMAAAAAAAAAAAAAAAAAAAAgIf/aAAgBAQABBQIq/wD/xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/AT//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/AT//xAAUEAEAAAAAAAAAAAAAAAAAAAAg/9oACAEBAAY/Al//xAAZEAEBAQADAAAAAAAAAAAAAAABABEQUWH/2gAIAQEAAT8hFyWa9w+y8f/aAAwDAQACAAMAAAAQ58//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/ED//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/ED//xAAcEAEAAgEFAAAAAAAAAAAAAAABADFxEBEhYYH/2gAIAQEAAT8QTRYy1zzOxNih6MShMmn/2Q=='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Screenshot"
+        title="Screenshot"
+        src="/blog/static/c281c06e37f8f2d3c9020da303dfa6f4/b4294/12-4.jpg"
+        srcset="/blog/static/c281c06e37f8f2d3c9020da303dfa6f4/75985/12-4.jpg 150w,
+/blog/static/c281c06e37f8f2d3c9020da303dfa6f4/f93b5/12-4.jpg 300w,
+/blog/static/c281c06e37f8f2d3c9020da303dfa6f4/b4294/12-4.jpg 600w,
+/blog/static/c281c06e37f8f2d3c9020da303dfa6f4/3f6a4/12-4.jpg 683w"
+        sizes="(max-width: 600px) 100vw, 600px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>Wir erstellen eine Shop Page und verlinken sie im Router.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 600px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/static/46d494d6291d0e080c9a0eb2d8461412/6fbf4/12-5.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 59.333333333333336%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAMABQDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAAECBf/EABQBAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhADEAAAAeQzQg//xAAUEAEAAAAAAAAAAAAAAAAAAAAg/9oACAEBAAEFAl//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/AT//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/AT//xAAUEAEAAAAAAAAAAAAAAAAAAAAg/9oACAEBAAY/Al//xAAXEAADAQAAAAAAAAAAAAAAAAAAEBEB/9oACAEBAAE/IaUqxf/aAAwDAQACAAMAAAAQ8M//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/ED//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/ED//xAAZEAACAwEAAAAAAAAAAAAAAAABMQAQIVH/2gAIAQEAAT8QQKBthLtI6//Z'); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Screenshot"
+        title="Screenshot"
+        src="/blog/static/46d494d6291d0e080c9a0eb2d8461412/b4294/12-5.jpg"
+        srcset="/blog/static/46d494d6291d0e080c9a0eb2d8461412/75985/12-5.jpg 150w,
+/blog/static/46d494d6291d0e080c9a0eb2d8461412/f93b5/12-5.jpg 300w,
+/blog/static/46d494d6291d0e080c9a0eb2d8461412/b4294/12-5.jpg 600w,
+/blog/static/46d494d6291d0e080c9a0eb2d8461412/8e1fc/12-5.jpg 900w,
+/blog/static/46d494d6291d0e080c9a0eb2d8461412/6fbf4/12-5.jpg 1011w"
+        sizes="(max-width: 600px) 100vw, 600px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>Dann erstellen wir eine CategoryPreview Component und mappen sie auf unserer Shop Page.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 600px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/static/215d9b77055f21ccbc822d53e22aacb9/50055/12-6.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 73.33333333333334%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAPABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAEF/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEAMQAAAByEBB/8QAFBABAAAAAAAAAAAAAAAAAAAAIP/aAAgBAQABBQJf/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPwE//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPwE//8QAFBABAAAAAAAAAAAAAAAAAAAAIP/aAAgBAQAGPwJf/8QAGRAAAwADAAAAAAAAAAAAAAAAAAERICFR/9oACAEBAAE/IboT6XD/2gAMAwEAAgADAAAAEOPP/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPxA//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPxA//8QAGxABAAICAwAAAAAAAAAAAAAAAQAhEVEQMXH/2gAIAQEAAT8QaLgbdRtSzKG5l84//9k='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Screenshot"
+        title="Screenshot"
+        src="/blog/static/215d9b77055f21ccbc822d53e22aacb9/b4294/12-6.jpg"
+        srcset="/blog/static/215d9b77055f21ccbc822d53e22aacb9/75985/12-6.jpg 150w,
+/blog/static/215d9b77055f21ccbc822d53e22aacb9/f93b5/12-6.jpg 300w,
+/blog/static/215d9b77055f21ccbc822d53e22aacb9/b4294/12-6.jpg 600w,
+/blog/static/215d9b77055f21ccbc822d53e22aacb9/8e1fc/12-6.jpg 900w,
+/blog/static/215d9b77055f21ccbc822d53e22aacb9/50055/12-6.jpg 1012w"
+        sizes="(max-width: 600px) 100vw, 600px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 199px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/static/406807d8cf1c4c49f1d8fef78bdae698/4fd5b/12-7.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 221.33333333333334%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAsABQDASIAAhEBAxEB/8QAGAAAAwEBAAAAAAAAAAAAAAAAAAMEAQX/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIQAxAAAAHtsQ80AmompNAJWLpNAP/EABgQAAMBAQAAAAAAAAAAAAAAAAECECAR/9oACAEBAAEFAg2BBtYp6Z//xAAUEQEAAAAAAAAAAAAAAAAAAAAg/9oACAEDAQE/AV//xAAUEQEAAAAAAAAAAAAAAAAAAAAg/9oACAECAQE/AV//xAAUEAEAAAAAAAAAAAAAAAAAAABA/9oACAEBAAY/Ahf/xAAfEAABAwQDAQAAAAAAAAAAAAABABAxESGx4UFRgfD/2gAIAQEAAT8h7XHqg3CuNIRZgPqaQNQ84axnL//aAAwDAQACAAMAAAAQQAgAkA//xAAUEQEAAAAAAAAAAAAAAAAAAAAg/9oACAEDAQE/EF//xAAUEQEAAAAAAAAAAAAAAAAAAAAg/9oACAECAQE/EF//xAAdEAEBAAIDAQEBAAAAAAAAAAABERAhADFhUdHB/9oACAEBAAE/EPpFepD+50l18tOCEq+veADFni4mYhNEmAlAPY4IEwHXVmtn7xvWjqiaww6B+L9z/9k='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Screenshot"
+        title="Screenshot"
+        src="/blog/static/406807d8cf1c4c49f1d8fef78bdae698/4fd5b/12-7.jpg"
+        srcset="/blog/static/406807d8cf1c4c49f1d8fef78bdae698/75985/12-7.jpg 150w,
+/blog/static/406807d8cf1c4c49f1d8fef78bdae698/4fd5b/12-7.jpg 199w"
+        sizes="(max-width: 199px) 100vw, 199px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>Wir wollen aber nur 4.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 388px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/static/347b8e83d9a6082dfdaf62ee3ec08eeb/c3c84/12-8.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 6.666666666666667%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAABABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAEF/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAH/2gAMAwEAAhADEAAAAcuCQL//xAAWEAADAAAAAAAAAAAAAAAAAAAAARD/2gAIAQEAAQUCFP/EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQMBAT8BP//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQIBAT8BP//EABQQAQAAAAAAAAAAAAAAAAAAABD/2gAIAQEABj8Cf//EABcQAQADAAAAAAAAAAAAAAAAAAEAEDH/2gAIAQEAAT8haOz/2gAMAwEAAgADAAAAEAQP/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPxA//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPxA//8QAFxAAAwEAAAAAAAAAAAAAAAAAADFxAf/aAAgBAQABPxBBtg+n/9k='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Screenshot"
+        title="Screenshot"
+        src="/blog/static/347b8e83d9a6082dfdaf62ee3ec08eeb/c3c84/12-8.jpg"
+        srcset="/blog/static/347b8e83d9a6082dfdaf62ee3ec08eeb/75985/12-8.jpg 150w,
+/blog/static/347b8e83d9a6082dfdaf62ee3ec08eeb/f93b5/12-8.jpg 300w,
+/blog/static/347b8e83d9a6082dfdaf62ee3ec08eeb/c3c84/12-8.jpg 388w"
+        sizes="(max-width: 388px) 100vw, 388px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>Wir erstellen eine Header Component und weitere Unterseiten, zwischen denen wir mit dem Header navigieren können.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 600px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/static/7a8ef204da0ceb5c34f156e58fb87935/e7b56/12-9.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 76.66666666666666%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAPABQDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAAECBf/EABQBAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhADEAAAAeVLkgP/xAAVEAEBAAAAAAAAAAAAAAAAAAABEP/aAAgBAQABBQJrf//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQMBAT8BP//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQIBAT8BP//EABQQAQAAAAAAAAAAAAAAAAAAACD/2gAIAQEABj8CX//EABcQAQEBAQAAAAAAAAAAAAAAAAABEUH/2gAIAQEAAT8hNiuGrdf/2gAMAwEAAgADAAAAEAMP/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPxA//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPxA//8QAGhAAAgMBAQAAAAAAAAAAAAAAAREAIUGRMf/aAAgBAQABPxDFWvYUBuEHTUA4yAwKI5CEyuT/2Q=='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Screenshot"
+        title="Screenshot"
+        src="/blog/static/7a8ef204da0ceb5c34f156e58fb87935/b4294/12-9.jpg"
+        srcset="/blog/static/7a8ef204da0ceb5c34f156e58fb87935/75985/12-9.jpg 150w,
+/blog/static/7a8ef204da0ceb5c34f156e58fb87935/f93b5/12-9.jpg 300w,
+/blog/static/7a8ef204da0ceb5c34f156e58fb87935/b4294/12-9.jpg 600w,
+/blog/static/7a8ef204da0ceb5c34f156e58fb87935/e7b56/12-9.jpg 843w"
+        sizes="(max-width: 600px) 100vw, 600px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>Wir erstellen ein Login Formular und handlen schon einmal ein wenig den State. Bei Änderungen wird der Value live in den State geschrieben, beim Submit des Forms wird der State, und somit auch die Inputs, geleert.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 470px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/static/ff2d7398e3b390837411af1020708dcf/747d8/12-10.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 172.66666666666669%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAjABQDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAAECBf/EABUBAQEAAAAAAAAAAAAAAAAAAAAB/9oADAMBAAIQAxAAAAHkxAg1c6TAWggP/8QAFhABAQEAAAAAAAAAAAAAAAAAIEEQ/9oACAEBAAEFAlcp/8QAFBEBAAAAAAAAAAAAAAAAAAAAIP/aAAgBAwEBPwFf/8QAFBEBAAAAAAAAAAAAAAAAAAAAIP/aAAgBAgEBPwFf/8QAFBABAAAAAAAAAAAAAAAAAAAAMP/aAAgBAQAGPwJ//8QAGxAAAgIDAQAAAAAAAAAAAAAAARAAETFBYYH/2gAIAQEAAT8hHVcE8Qwhu9IQeF2v/9oADAMBAAIAAwAAABBwx3yDz//EABQRAQAAAAAAAAAAAAAAAAAAACD/2gAIAQMBAT8QX//EABQRAQAAAAAAAAAAAAAAAAAAACD/2gAIAQIBAT8QX//EAB8QAQACAgICAwAAAAAAAAAAAAEAESExEFFBYYGh8f/aAAgBAQABPxBDhV1Fbopiu4kvFnnUU/HD+qZmF8caL1iC2uA2vqW7Yq7n/9k='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Screenshot"
+        title="Screenshot"
+        src="/blog/static/ff2d7398e3b390837411af1020708dcf/747d8/12-10.jpg"
+        srcset="/blog/static/ff2d7398e3b390837411af1020708dcf/75985/12-10.jpg 150w,
+/blog/static/ff2d7398e3b390837411af1020708dcf/f93b5/12-10.jpg 300w,
+/blog/static/ff2d7398e3b390837411af1020708dcf/747d8/12-10.jpg 470w"
+        sizes="(max-width: 470px) 100vw, 470px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>Daraus machen wir nun eine Form Input Component und eine Button Component.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 600px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/static/d1d72298c6296cfe6721a0e297802b0f/445d5/12-11.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 52%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAKABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAEF/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEAMQAAAByCAH/8QAFBABAAAAAAAAAAAAAAAAAAAAIP/aAAgBAQABBQJf/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPwE//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPwE//8QAFBABAAAAAAAAAAAAAAAAAAAAIP/aAAgBAQAGPwJf/8QAGRAAAQUAAAAAAAAAAAAAAAAAAAERICFR/9oACAEBAAE/IXL1Y//aAAwDAQACAAMAAAAQ4A//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/ED//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/ED//xAAZEAEAAwEBAAAAAAAAAAAAAAABABExEOH/2gAIAQEAAT8QFWxfRGzYB3//2Q=='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Screenshot"
+        title="Screenshot"
+        src="/blog/static/d1d72298c6296cfe6721a0e297802b0f/b4294/12-11.jpg"
+        srcset="/blog/static/d1d72298c6296cfe6721a0e297802b0f/75985/12-11.jpg 150w,
+/blog/static/d1d72298c6296cfe6721a0e297802b0f/f93b5/12-11.jpg 300w,
+/blog/static/d1d72298c6296cfe6721a0e297802b0f/b4294/12-11.jpg 600w,
+/blog/static/d1d72298c6296cfe6721a0e297802b0f/445d5/12-11.jpg 681w"
+        sizes="(max-width: 600px) 100vw, 600px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 547px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/static/e10e23a868d0bdc35344780e40571343/97d16/12-12.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 60%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAMABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAQAF/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEAMQAAAByQBiP//EABQQAQAAAAAAAAAAAAAAAAAAACD/2gAIAQEAAQUCX//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQMBAT8BP//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQIBAT8BP//EABQQAQAAAAAAAAAAAAAAAAAAACD/2gAIAQEABj8CX//EABgQAQEAAwAAAAAAAAAAAAAAABEAARCB/9oACAEBAAE/IVu4md//2gAMAwEAAgADAAAAENDP/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPxA//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPxA//8QAHBABAAICAwEAAAAAAAAAAAAAAQARUZEQITFx/9oACAEBAAE/EBC1OsxbYKv3U+DUu8cf/9k='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Screenshot"
+        title="Screenshot"
+        src="/blog/static/e10e23a868d0bdc35344780e40571343/97d16/12-12.jpg"
+        srcset="/blog/static/e10e23a868d0bdc35344780e40571343/75985/12-12.jpg 150w,
+/blog/static/e10e23a868d0bdc35344780e40571343/f93b5/12-12.jpg 300w,
+/blog/static/e10e23a868d0bdc35344780e40571343/97d16/12-12.jpg 547w"
+        sizes="(max-width: 547px) 100vw, 547px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>Console Log zeigt uns, unsere Components funktionieren wie sie sollen.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 600px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/static/cafa6820c477a24ecde0812ba0aab2ff/0b8c2/12-13.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 50.66666666666667%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAKABQDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAAIDBf/EABQBAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhADEAAAAetvcEg//8QAGhAAAgIDAAAAAAAAAAAAAAAAAAECAxARMf/aAAgBAQABBQKMrNseGPv/xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/AT//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/AT//xAAYEAEAAwEAAAAAAAAAAAAAAAABAxEgcv/aAAgBAQAGPwIGOjrX/8QAGRAAAQUAAAAAAAAAAAAAAAAAEQEQIDFx/9oACAEBAAE/Ids4FDLQX//aAAwDAQACAAMAAAAQUA//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/ED//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/ED//xAAaEAACAwEBAAAAAAAAAAAAAAAAAREhMRCh/9oACAEBAAE/EHLiw/MJF2iWqfNo0P/Z'); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Screenshot"
+        title="Screenshot"
+        src="/blog/static/cafa6820c477a24ecde0812ba0aab2ff/b4294/12-13.jpg"
+        srcset="/blog/static/cafa6820c477a24ecde0812ba0aab2ff/75985/12-13.jpg 150w,
+/blog/static/cafa6820c477a24ecde0812ba0aab2ff/f93b5/12-13.jpg 300w,
+/blog/static/cafa6820c477a24ecde0812ba0aab2ff/b4294/12-13.jpg 600w,
+/blog/static/cafa6820c477a24ecde0812ba0aab2ff/8e1fc/12-13.jpg 900w,
+/blog/static/cafa6820c477a24ecde0812ba0aab2ff/0b8c2/12-13.jpg 968w"
+        sizes="(max-width: 600px) 100vw, 600px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>Wir pushen alles zu GitHub und rufen wieder gh-pages DEPLOY auf den Plan.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 483px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/static/7906bfb356fd75454b6cbbcbd20fe3dc/aaf15/12-14.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 36%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAHABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAIF/8QAFAEBAAAAAAAAAAAAAAAAAAAAAf/aAAwDAQACEAMQAAAB2wlgf//EABQQAQAAAAAAAAAAAAAAAAAAABD/2gAIAQEAAQUCf//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQMBAT8BP//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQIBAT8BP//EABYQAAMAAAAAAAAAAAAAAAAAAAAQMf/aAAgBAQAGPwIq/8QAGRAAAwEBAQAAAAAAAAAAAAAAAAEhkTFR/9oACAEBAAE/IX116T1oqoz/2gAMAwEAAgADAAAAEAQP/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPxA//8QAFhEBAQEAAAAAAAAAAAAAAAAAABFB/9oACAECAQE/EMV//8QAGRABAAMBAQAAAAAAAAAAAAAAAQARUTGB/9oACAEBAAE/EKG1qDdHxUrcicn/2Q=='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Screenshot"
+        title="Screenshot"
+        src="/blog/static/7906bfb356fd75454b6cbbcbd20fe3dc/aaf15/12-14.jpg"
+        srcset="/blog/static/7906bfb356fd75454b6cbbcbd20fe3dc/75985/12-14.jpg 150w,
+/blog/static/7906bfb356fd75454b6cbbcbd20fe3dc/f93b5/12-14.jpg 300w,
+/blog/static/7906bfb356fd75454b6cbbcbd20fe3dc/aaf15/12-14.jpg 483w"
+        sizes="(max-width: 483px) 100vw, 483px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 356px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/static/5b8445250b738e1195b4aa9c705dc287/65bea/12-15.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 50.66666666666667%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAKABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAIF/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEAMQAAAB3aAD/8QAFRABAQAAAAAAAAAAAAAAAAAAASD/2gAIAQEAAQUCa//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQMBAT8BP//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQIBAT8BP//EABQQAQAAAAAAAAAAAAAAAAAAACD/2gAIAQEABj8CX//EABsQAAIBBQAAAAAAAAAAAAAAAAEQMQARIVGh/9oACAEBAAE/IcDPXNWGl//aAAwDAQACAAMAAAAQA8//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/ED//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/ED//xAAcEAEAAgMAAwAAAAAAAAAAAAABACERQWEQgZH/2gAIAQEAAT8QoqjLRtBdge/CFEE7OT5ACgxP/9k='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Screenshot"
+        title="Screenshot"
+        src="/blog/static/5b8445250b738e1195b4aa9c705dc287/65bea/12-15.jpg"
+        srcset="/blog/static/5b8445250b738e1195b4aa9c705dc287/75985/12-15.jpg 150w,
+/blog/static/5b8445250b738e1195b4aa9c705dc287/f93b5/12-15.jpg 300w,
+/blog/static/5b8445250b738e1195b4aa9c705dc287/65bea/12-15.jpg 356w"
+        sizes="(max-width: 356px) 100vw, 356px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>Die Navigation läuft aber nicht, da im Gegensatz zu localhost die App nun hinter /react-redux-shop/ liegt. Abhilfe schaffen wir uns, indem wir den BrowserRouter mit HashRouter ersetzen.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 473px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/static/641e7e549ff30581f187f9f581bb0497/b96f8/12-16.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 80%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAQABQDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAECBf/EABQBAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhADEAAAAcqXICD/xAAVEAEBAAAAAAAAAAAAAAAAAAAQAf/aAAgBAQABBQJj/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPwE//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPwE//8QAFBABAAAAAAAAAAAAAAAAAAAAIP/aAAgBAQAGPwJf/8QAGxAAAgIDAQAAAAAAAAAAAAAAAAERYRAxQXH/2gAIAQEAAT8hTnY3ZNjR0fuP/9oADAMBAAIAAwAAABBQz//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQMBAT8QP//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQIBAT8QP//EABwQAAMAAQUAAAAAAAAAAAAAAAABESEQMVFxgf/aAAgBAQABPxBe6+0KuGK5CKsYJrarzT//2Q=='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Screenshot"
+        title="Screenshot"
+        src="/blog/static/641e7e549ff30581f187f9f581bb0497/b96f8/12-16.jpg"
+        srcset="/blog/static/641e7e549ff30581f187f9f581bb0497/75985/12-16.jpg 150w,
+/blog/static/641e7e549ff30581f187f9f581bb0497/f93b5/12-16.jpg 300w,
+/blog/static/641e7e549ff30581f187f9f581bb0497/b96f8/12-16.jpg 473w"
+        sizes="(max-width: 473px) 100vw, 473px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>Nun läuft die App im /#/ Mode und wir können auch auf GitHub Pages navigieren.</p></article></div></div></div></div></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/article-12-shop-2-router-form-state/";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"polyfill":["/polyfill-2f533b7f1322894d1916.js"],"app":["/app-225160758adade3fa3f2.js"],"component---src-pages-404-js":["/component---src-pages-404-js-b6cff82b20efc5c765a6.js"],"component---src-pages-index-js":["/component---src-pages-index-js-67ea04f1708c39eeae81.js"],"component---src-templates-blog-post-js":["/component---src-templates-blog-post-js-4ecac0af02aa737e476c.js"]};/*]]>*/</script><script src="/blog/polyfill-2f533b7f1322894d1916.js" nomodule=""></script><script src="/blog/component---src-templates-blog-post-js-4ecac0af02aa737e476c.js" async=""></script><script src="/blog/commons-5568e36bad1ff202403a.js" async=""></script><script src="/blog/app-225160758adade3fa3f2.js" async=""></script><script src="/blog/framework-bee5b4b4fa37bec3e7c7.js" async=""></script><script src="/blog/webpack-runtime-b52e989569019ef1a593.js" async=""></script><script src="https://design-system.ebalance.dev/dist/js/header.js"></script><script src="https://design-system.ebalance.dev/dist/js/off-canvas.js"></script></body></html>

@@ -1,0 +1,419 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><style data-href="/blog/styles.26a9653a6e822f025180.css" id="gatsby-global-css">@import url(https://design-system.ebalance.dev/dist/css/index.min.css);body{padding-bottom:50px;background:#f7f8f9}.gatsby-resp-image-wrapper{margin:7px 0!important;border-radius:5px;border:1px solid #ccc;box-shadow:0 3px 8px rgb(0 0 0/.1);overflow:hidden}.panel{max-width:800px;margin:0 auto;padding:50px;overflow:unset}.blog-link{display:block;padding:20px;border-radius:4px;background:#f7f8f9;transition:.15s;cursor:pointer}.blog-link+.blog-link{margin-top:20px}.blog-link:hover{background:#e7e8e9}</style><meta name="generator" content="Gatsby 3.0.4"/><title data-react-helmet="true">[Shop 3] Backend Anbindung und Login/Logout mit Firebase Authentifizierung | Oliver Knoblich</title><meta data-react-helmet="true" name="description" content="Blog von Oliver Knoblich"/><meta data-react-helmet="true" property="og:title" content="[Shop 3] Backend Anbindung und Login/Logout mit Firebase Authentifizierung"/><meta data-react-helmet="true" property="og:description" content="Blog von Oliver Knoblich"/><meta data-react-helmet="true" property="og:type" content="website"/><meta data-react-helmet="true" name="twitter:card" content="summary"/><meta data-react-helmet="true" name="twitter:creator" content="Oliver Knoblich"/><meta data-react-helmet="true" name="twitter:title" content="[Shop 3] Backend Anbindung und Login/Logout mit Firebase Authentifizierung"/><meta data-react-helmet="true" name="twitter:description" content="Blog von Oliver Knoblich"/><link as="script" rel="preload" href="/blog/webpack-runtime-b52e989569019ef1a593.js"/><link as="script" rel="preload" href="/blog/framework-bee5b4b4fa37bec3e7c7.js"/><link as="script" rel="preload" href="/blog/app-225160758adade3fa3f2.js"/><link as="script" rel="preload" href="/blog/commons-5568e36bad1ff202403a.js"/><link as="script" rel="preload" href="/blog/component---src-templates-blog-post-js-4ecac0af02aa737e476c.js"/><link as="fetch" rel="preload" href="/blog/page-data/article-13-shop-3-firebase-auth/page-data.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/blog/page-data/sq/d/63159454.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/blog/page-data/app-data.json" crossorigin="anonymous"/></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><div class="header is-white"><div class="inner"><nav><ul><li><a href="/">Home</a></li><li><a href="/blog/" class="is-active">Blog</a></li></ul></nav><nav><ul><li><a href="/react-admin-panel/"><span class="react">React</span>Admin Panel</a></li><li><a href="/react-book-store/"><span class="react">React</span>Book Store</a></li><li><a href="/react-budget-list/"><span class="react">React</span>Budget List</a></li><li><a href="/react-github-find/"><span class="react">React</span>GitHub Find</a></li><li><a href="/sass-design-system/"><span class="sass">Sass</span>Design System</a></li><li class="offcanvas-toggle"><svg viewBox="0 0 100 100"><path class="line l1" d="m 70,33 h -40 c 0,0 -8.5,-0.149796 -8.5,8.5 0,8.649796 8.5,8.5 8.5,8.5 h 20 v -20"></path><path class="line l2" d="m 70,50 h -40"></path><path class="line l3" d="m 30,67 h 40 c 0,0 8.5,0.149796 8.5,-8.5 0,-8.649796 -8.5,-8.5 -8.5,-8.5 h -20 v 20"></path></svg></li></ul></nav></div></div><div class="offcanvas"><div class="inner"><nav><ul><li><a href="/">Home</a></li><li><a href="/blog/" class="is-active">Blog</a></li><li><a href="/react-admin-panel/"><span class="react">React</span> Admin Panel</a></li><li><a href="/react-book-store/"><span class="react">React</span> Book Store</a></li><li><a href="/react-budget-list/"><span class="react">React</span> Budget List</a></li><li><a href="/react-github-find/"><span class="react">React</span> GitHub Find</a></li><li><a href="/sass-design-system/"><span class="sass">Sass</span> Design System</a></li></ul></nav></div></div><div class="container"><h1 class="text-center my-5">Blog</h1><div class="panel is-high"><a style="position:absolute;top:-38px;left:0;width:100%;font-size:12px;text-align:center" href="/blog/"><span style="position:relative;top:2px;font-size:16px">←</span> zurück zur Übersicht</a><div class="row"><div class="col-12"><h1>[Shop 3] Backend Anbindung und Login/Logout mit Firebase Authentifizierung</h1></div><div class="col-12"><article><p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 600px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/static/d1d3ec1477c145dfb0342ab8c3322815/4dfa3/13-1.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 58.666666666666664%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAMABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAwAC/8QAFQEBAQAAAAAAAAAAAAAAAAAAAQT/2gAMAwEAAhADEAAAAdRDbK0En//EABkQAAMAAwAAAAAAAAAAAAAAAAACExASIv/aAAgBAQABBQKjlGKub84//8QAFxEBAAMAAAAAAAAAAAAAAAAAAAERIf/aAAgBAwEBPwHVy//EABYRAAMAAAAAAAAAAAAAAAAAAAABEf/aAAgBAgEBPwGIiP/EABoQAAICAwAAAAAAAAAAAAAAAAACATIQERL/2gAIAQEABj8Cuxdi8muVz//EABsQAAICAwEAAAAAAAAAAAAAAAARIfEBEFHB/9oACAEBAAE/IcI9CyL0hwE1I9f/2gAMAwEAAgADAAAAEPc//8QAFxEBAQEBAAAAAAAAAAAAAAAAAQBBYf/aAAgBAwEBPxBRt0v/xAAXEQEBAQEAAAAAAAAAAAAAAAABACFh/9oACAECAQE/EBFy5X//xAAeEAEAAgEEAwAAAAAAAAAAAAABABEhMUFRcYGx0f/aAAgBAQABPxBhU14Veom5r7fI3tQb7NrV5XesWlMXM//Z'); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Screenshot"
+        title="Screenshot"
+        src="/blog/static/d1d3ec1477c145dfb0342ab8c3322815/b4294/13-1.jpg"
+        srcset="/blog/static/d1d3ec1477c145dfb0342ab8c3322815/75985/13-1.jpg 150w,
+/blog/static/d1d3ec1477c145dfb0342ab8c3322815/f93b5/13-1.jpg 300w,
+/blog/static/d1d3ec1477c145dfb0342ab8c3322815/b4294/13-1.jpg 600w,
+/blog/static/d1d3ec1477c145dfb0342ab8c3322815/4dfa3/13-1.jpg 792w"
+        sizes="(max-width: 600px) 100vw, 600px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>Wir besuchen die Firebase Console auf <a href="https://console.firebase.google.com/">https://console.firebase.google.com/</a> und erstellen ein neues Projekt.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 464px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/static/023235c20622085d1e0f5c0a0787f1ea/c9a08/13-2.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 63.33333333333333%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAANABQDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAAECBf/EABUBAQEAAAAAAAAAAAAAAAAAAAEA/9oADAMBAAIQAxAAAAHr3ZKov//EABYQAQEBAAAAAAAAAAAAAAAAAAEhEP/aAAgBAQABBQJbXbn/xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/AT//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/AT//xAAYEAACAwAAAAAAAAAAAAAAAAAAIDGh4f/aAAgBAQAGPwKbNX//xAAdEAADAAEFAQAAAAAAAAAAAAAAAREhMUFRcZHw/9oACAEBAAE/Ic9eApVNz5wJTdvsdryXDQp//9oADAMBAAIAAwAAABAnP//EABURAQEAAAAAAAAAAAAAAAAAABAR/9oACAEDAQE/EKf/xAAVEQEBAAAAAAAAAAAAAAAAAAAAEf/aAAgBAgEBPxCI/8QAHBABAQEAAwADAAAAAAAAAAAAAREAITFBcaHh/9oACAEBAAE/EECsbCB9TSEl0gxwjzO8RkJ5TFKUe8fu+G//2Q=='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Screenshot"
+        title="Screenshot"
+        src="/blog/static/023235c20622085d1e0f5c0a0787f1ea/c9a08/13-2.jpg"
+        srcset="/blog/static/023235c20622085d1e0f5c0a0787f1ea/75985/13-2.jpg 150w,
+/blog/static/023235c20622085d1e0f5c0a0787f1ea/f93b5/13-2.jpg 300w,
+/blog/static/023235c20622085d1e0f5c0a0787f1ea/c9a08/13-2.jpg 464w"
+        sizes="(max-width: 464px) 100vw, 464px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 258px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/static/1a8293fa39dbd197fe5231f44648ccc8/53f89/13-3.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 99.33333333333331%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAUABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAEF/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAH/2gAMAwEAAhADEAAAAd1EUUBQf//EABUQAQEAAAAAAAAAAAAAAAAAACAR/9oACAEBAAEFAhT/AP/EABQRAQAAAAAAAAAAAAAAAAAAACD/2gAIAQMBAT8BH//EABQRAQAAAAAAAAAAAAAAAAAAACD/2gAIAQIBAT8BH//EABQQAQAAAAAAAAAAAAAAAAAAADD/2gAIAQEABj8CH//EABsQAAEEAwAAAAAAAAAAAAAAAAEAEBEhIFGR/9oACAEBAAE/IVcmmJhX3zH/2gAMAwEAAgADAAAAELvPAP/EABQRAQAAAAAAAAAAAAAAAAAAACD/2gAIAQMBAT8QH//EABURAQEAAAAAAAAAAAAAAAAAAAEg/9oACAECAQE/EEY//8QAHBABAQACAgMAAAAAAAAAAAAAAREAMRAgQYGR/9oACAEBAAE/ENsMoJUNPh4OVH0XJQT6df/Z'); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Screenshot"
+        title="Screenshot"
+        src="/blog/static/1a8293fa39dbd197fe5231f44648ccc8/53f89/13-3.jpg"
+        srcset="/blog/static/1a8293fa39dbd197fe5231f44648ccc8/75985/13-3.jpg 150w,
+/blog/static/1a8293fa39dbd197fe5231f44648ccc8/53f89/13-3.jpg 258w"
+        sizes="(max-width: 258px) 100vw, 258px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>Wir fügen Firebase zu unserer App hinzu.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 447px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/static/abad90c4701525ef464e1f9c1db7ab54/f6339/13-4.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 64%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAANABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAgAB/8QAFgEBAQEAAAAAAAAAAAAAAAAABAID/9oADAMBAAIQAxAAAAE5peMws7//xAAZEAEBAAMBAAAAAAAAAAAAAAABEQACEBL/2gAIAQEAAQUCJLz2zZq5/8QAFxEBAQEBAAAAAAAAAAAAAAAAAQADIf/aAAgBAwEBPwGM17f/xAAYEQACAwAAAAAAAAAAAAAAAAAAAQIDEf/aAAgBAgEBPwEdsU8P/8QAFhABAQEAAAAAAAAAAAAAAAAAEBEA/9oACAEBAAY/Aman/8QAGRAAAwEBAQAAAAAAAAAAAAAAAAERITFR/9oACAEBAAE/IWhYR4N7gk8pJwa5uvWO6f/aAAwDAQACAAMAAAAQPy//xAAXEQADAQAAAAAAAAAAAAAAAAAAASER/9oACAEDAQE/EG5BJg//xAAYEQEBAAMAAAAAAAAAAAAAAAABABEhQf/aAAgBAgEBPxAHO5kuX//EAB0QAQEAAgEFAAAAAAAAAAAAAAERACExQVGRsdH/2gAIAQEAAT8Q2RfWhfWPHPg+ZRIhhosENOFvbI+10AbwAjNZ/9k='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Screenshot"
+        title="Screenshot"
+        src="/blog/static/abad90c4701525ef464e1f9c1db7ab54/f6339/13-4.jpg"
+        srcset="/blog/static/abad90c4701525ef464e1f9c1db7ab54/75985/13-4.jpg 150w,
+/blog/static/abad90c4701525ef464e1f9c1db7ab54/f93b5/13-4.jpg 300w,
+/blog/static/abad90c4701525ef464e1f9c1db7ab54/f6339/13-4.jpg 447w"
+        sizes="(max-width: 447px) 100vw, 447px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 576px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/static/ec76f331ce93cde5a42a920377aa50bb/ac097/13-5.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 45.33333333333333%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAJABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAEF/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEAMQAAAB3KoB/8QAFhAAAwAAAAAAAAAAAAAAAAAAABEg/9oACAEBAAEFAhT/AP/EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQMBAT8BP//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQIBAT8BP//EABYQAAMAAAAAAAAAAAAAAAAAAAAgQf/aAAgBAQAGPwIq/wD/xAAcEAACAQUBAAAAAAAAAAAAAAAAATEQEUFRkXH/2gAIAQEAAT8hc56euhK2xiin/9oADAMBAAIAAwAAABAQz//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQMBAT8QP//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQIBAT8QP//EAB0QAAIBBAMAAAAAAAAAAAAAAAARARAhMXFBkeH/2gAIAQEAAT8Qsm16wJ6RBOW5ZxMGqf/Z'); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Screenshot"
+        title="Screenshot"
+        src="/blog/static/ec76f331ce93cde5a42a920377aa50bb/ac097/13-5.jpg"
+        srcset="/blog/static/ec76f331ce93cde5a42a920377aa50bb/75985/13-5.jpg 150w,
+/blog/static/ec76f331ce93cde5a42a920377aa50bb/f93b5/13-5.jpg 300w,
+/blog/static/ec76f331ce93cde5a42a920377aa50bb/ac097/13-5.jpg 576w"
+        sizes="(max-width: 576px) 100vw, 576px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 600px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/static/3f1bf44554dd32794868131bb58928ca/e6e7b/13-6.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 74%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAPABQDASIAAhEBAxEB/8QAFwABAAMAAAAAAAAAAAAAAAAAAAECBf/EABQBAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhADEAAAAdtAuD//xAAYEAACAwAAAAAAAAAAAAAAAAABEAARIf/aAAgBAQABBQKWiNX/xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/AT//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/AT//xAAUEAEAAAAAAAAAAAAAAAAAAAAg/9oACAEBAAY/Al//xAAXEAEBAQEAAAAAAAAAAAAAAAABABEh/9oACAEBAAE/IXjy1DI6gi//2gAMAwEAAgADAAAAEBAP/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPxA//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPxA//8QAGRABAQADAQAAAAAAAAAAAAAAAQAhMVER/9oACAEBAAE/EMnxrkcGZMzEGJTdpf/Z'); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Screenshot"
+        title="Screenshot"
+        src="/blog/static/3f1bf44554dd32794868131bb58928ca/b4294/13-6.jpg"
+        srcset="/blog/static/3f1bf44554dd32794868131bb58928ca/75985/13-6.jpg 150w,
+/blog/static/3f1bf44554dd32794868131bb58928ca/f93b5/13-6.jpg 300w,
+/blog/static/3f1bf44554dd32794868131bb58928ca/b4294/13-6.jpg 600w,
+/blog/static/3f1bf44554dd32794868131bb58928ca/e6e7b/13-6.jpg 770w"
+        sizes="(max-width: 600px) 100vw, 600px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>Wir fügen Firebase zu unserem Projekt hinzu.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 198px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/static/6e55aabab594ebb8562c872d2473f05d/1c62d/13-7.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 27.999999999999996%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAGABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAIF/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEAMQAAABwwQD/8QAFxAAAwEAAAAAAAAAAAAAAAAAAAEREP/aAAgBAQABBQKlWf/EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQMBAT8BP//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQIBAT8BP//EABYQAQEBAAAAAAAAAAAAAAAAADEAEP/aAAgBAQAGPwIjP//EABkQAQADAQEAAAAAAAAAAAAAAAEAETGh8P/aAAgBAQABPyFK29TxY7lT/9oADAMBAAIAAwAAABCDz//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQMBAT8QP//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQIBAT8QP//EABkQAQADAQEAAAAAAAAAAAAAAAEAESFRMf/aAAgBAQABPxBNZVt15yA3Zd6iFJQuHJ//2Q=='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Screenshot"
+        title="Screenshot"
+        src="/blog/static/6e55aabab594ebb8562c872d2473f05d/1c62d/13-7.jpg"
+        srcset="/blog/static/6e55aabab594ebb8562c872d2473f05d/75985/13-7.jpg 150w,
+/blog/static/6e55aabab594ebb8562c872d2473f05d/1c62d/13-7.jpg 198w"
+        sizes="(max-width: 198px) 100vw, 198px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 600px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/static/40fdae1a2cf21f775d6bd0012949f38d/df7e7/13-8.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 86.66666666666667%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAARABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAEF/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEAMQAAABySEAAB//xAAUEAEAAAAAAAAAAAAAAAAAAAAw/9oACAEBAAEFAh//xAAUEQEAAAAAAAAAAAAAAAAAAAAg/9oACAEDAQE/AR//xAAUEQEAAAAAAAAAAAAAAAAAAAAg/9oACAECAQE/AR//xAAUEAEAAAAAAAAAAAAAAAAAAAAw/9oACAEBAAY/Ah//xAAZEAEAAgMAAAAAAAAAAAAAAAABABEQIGH/2gAIAQEAAT8hLSI4JXdf/9oADAMBAAIAAwAAABCQCAD/xAAUEQEAAAAAAAAAAAAAAAAAAAAg/9oACAEDAQE/EB//xAAUEQEAAAAAAAAAAAAAAAAAAAAg/9oACAECAQE/EB//xAAcEAEAAgIDAQAAAAAAAAAAAAABABFBUSAxkYH/2gAIAQEAAT8QNmhxMhCW7gvX1iHo+xK17w//2Q=='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Screenshot"
+        title="Screenshot"
+        src="/blog/static/40fdae1a2cf21f775d6bd0012949f38d/b4294/13-8.jpg"
+        srcset="/blog/static/40fdae1a2cf21f775d6bd0012949f38d/75985/13-8.jpg 150w,
+/blog/static/40fdae1a2cf21f775d6bd0012949f38d/f93b5/13-8.jpg 300w,
+/blog/static/40fdae1a2cf21f775d6bd0012949f38d/b4294/13-8.jpg 600w,
+/blog/static/40fdae1a2cf21f775d6bd0012949f38d/df7e7/13-8.jpg 639w"
+        sizes="(max-width: 600px) 100vw, 600px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 600px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/static/acf2516dd6e6aee26b1c089fdf567b32/51334/13-9.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 60%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAMABQDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAEFAv/EABQBAQAAAAAAAAAAAAAAAAAAAAH/2gAMAwEAAhADEAAAAdXIVxGMH//EABkQAAEFAAAAAAAAAAAAAAAAADIABAUQQf/aAAgBAQABBQJgVRx6v//EABURAQEAAAAAAAAAAAAAAAAAAAEQ/9oACAEDAQE/ASf/xAAVEQEBAAAAAAAAAAAAAAAAAAABEP/aAAgBAgEBPwFn/8QAFRABAQAAAAAAAAAAAAAAAAAAAhD/2gAIAQEABj8Cdd//xAAZEAEAAgMAAAAAAAAAAAAAAAABABARgaH/2gAIAQEAAT8hJrJiuUoT/9oADAMBAAIAAwAAABAgD//EABURAQEAAAAAAAAAAAAAAAAAABAx/9oACAEDAQE/EIP/xAAVEQEBAAAAAAAAAAAAAAAAAAAQMf/aAAgBAgEBPxCj/8QAGxABAAICAwAAAAAAAAAAAAAAAQARITFR4fD/2gAIAQEAAT8QUOe9gqlHJE+PbKtlsAGp/9k='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Screenshot"
+        title="Screenshot"
+        src="/blog/static/acf2516dd6e6aee26b1c089fdf567b32/b4294/13-9.jpg"
+        srcset="/blog/static/acf2516dd6e6aee26b1c089fdf567b32/75985/13-9.jpg 150w,
+/blog/static/acf2516dd6e6aee26b1c089fdf567b32/f93b5/13-9.jpg 300w,
+/blog/static/acf2516dd6e6aee26b1c089fdf567b32/b4294/13-9.jpg 600w,
+/blog/static/acf2516dd6e6aee26b1c089fdf567b32/8e1fc/13-9.jpg 900w,
+/blog/static/acf2516dd6e6aee26b1c089fdf567b32/51334/13-9.jpg 1168w"
+        sizes="(max-width: 600px) 100vw, 600px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 550px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/static/82b41d72cc3505e194556ffd55d7161d/d7854/13-10.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 8.666666666666668%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAACABQDASIAAhEBAxEB/8QAFwABAAMAAAAAAAAAAAAAAAAAAAECBf/EABUBAQEAAAAAAAAAAAAAAAAAAAAB/9oADAMBAAIQAxAAAAHLkSgT/8QAFBABAAAAAAAAAAAAAAAAAAAAEP/aAAgBAQABBQJ//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPwE//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPwE//8QAFBABAAAAAAAAAAAAAAAAAAAAEP/aAAgBAQAGPwJ//8QAFRABAQAAAAAAAAAAAAAAAAAAARD/2gAIAQEAAT8hL//aAAwDAQACAAMAAAAQg/8A/8QAFhEAAwAAAAAAAAAAAAAAAAAAARAx/9oACAEDAQE/EBF//8QAFREBAQAAAAAAAAAAAAAAAAAAEEH/2gAIAQIBAT8Qp//EABkQAAIDAQAAAAAAAAAAAAAAAAABETGBUf/aAAgBAQABPxC2jvCFxH//2Q=='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Screenshot"
+        title="Screenshot"
+        src="/blog/static/82b41d72cc3505e194556ffd55d7161d/d7854/13-10.jpg"
+        srcset="/blog/static/82b41d72cc3505e194556ffd55d7161d/75985/13-10.jpg 150w,
+/blog/static/82b41d72cc3505e194556ffd55d7161d/f93b5/13-10.jpg 300w,
+/blog/static/82b41d72cc3505e194556ffd55d7161d/d7854/13-10.jpg 550w"
+        sizes="(max-width: 550px) 100vw, 550px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>Und schon ist der Google Login fertig.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 600px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/static/679d5cc24f32d597d61bb6c4cd16bf7b/56d85/13-11.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 60%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAMABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAUB/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEAMQAAABuo9oxo//xAAWEAEBAQAAAAAAAAAAAAAAAAADEBH/2gAIAQEAAQUConiz/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPwE//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPwE//8QAGBAAAwEBAAAAAAAAAAAAAAAAAQIQE3H/2gAIAQEABj8CqnRz03//xAAZEAACAwEAAAAAAAAAAAAAAAAAARAhMXH/2gAIAQEAAT8hULoysTykUf/aAAwDAQACAAMAAAAQo8//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/ED//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/ED//xAAbEAEAAgMBAQAAAAAAAAAAAAABABEhMWEQgf/aAAgBAQABPxAKF4XkumrDuLiK0exzWTcWHZUBX3z/2Q=='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Screenshot"
+        title="Screenshot"
+        src="/blog/static/679d5cc24f32d597d61bb6c4cd16bf7b/b4294/13-11.jpg"
+        srcset="/blog/static/679d5cc24f32d597d61bb6c4cd16bf7b/75985/13-11.jpg 150w,
+/blog/static/679d5cc24f32d597d61bb6c4cd16bf7b/f93b5/13-11.jpg 300w,
+/blog/static/679d5cc24f32d597d61bb6c4cd16bf7b/b4294/13-11.jpg 600w,
+/blog/static/679d5cc24f32d597d61bb6c4cd16bf7b/8e1fc/13-11.jpg 900w,
+/blog/static/679d5cc24f32d597d61bb6c4cd16bf7b/56d85/13-11.jpg 946w"
+        sizes="(max-width: 600px) 100vw, 600px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>Wir fügen nun einen State zur App hinzu, der uns sagt ob der User ein- oder ausgeloggt ist.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 538px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/static/e6b12e66af9adc66fcc1530bc627de63/80320/13-12.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 104%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAVABQDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAAIBBf/EABUBAQEAAAAAAAAAAAAAAAAAAAAB/9oADAMBAAIQAxAAAAHkTeJLS6EkL//EABYQAAMAAAAAAAAAAAAAAAAAABARIP/aAAgBAQABBQK0P//EABQRAQAAAAAAAAAAAAAAAAAAACD/2gAIAQMBAT8BH//EABQRAQAAAAAAAAAAAAAAAAAAACD/2gAIAQIBAT8BH//EABQQAQAAAAAAAAAAAAAAAAAAADD/2gAIAQEABj8CH//EAB0QAAICAQUAAAAAAAAAAAAAAAERABBBMWFxkfD/2gAIAQEAAT8hxmw1oeo/KgHtOVf/2gAMAwEAAgADAAAAEGcP/P/EABURAQEAAAAAAAAAAAAAAAAAABAR/9oACAEDAQE/ECn/xAAUEQEAAAAAAAAAAAAAAAAAAAAg/9oACAECAQE/EB//xAAbEAADAAMBAQAAAAAAAAAAAAAAAREQIZFBUf/aAAgBAQABPxDch33DJNOh/CXBSBRjZXD/2Q=='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Screenshot"
+        title="Screenshot"
+        src="/blog/static/e6b12e66af9adc66fcc1530bc627de63/80320/13-12.jpg"
+        srcset="/blog/static/e6b12e66af9adc66fcc1530bc627de63/75985/13-12.jpg 150w,
+/blog/static/e6b12e66af9adc66fcc1530bc627de63/f93b5/13-12.jpg 300w,
+/blog/static/e6b12e66af9adc66fcc1530bc627de63/80320/13-12.jpg 538w"
+        sizes="(max-width: 538px) 100vw, 538px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>Und am Ende noch einen Logout Button in den Header.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 435px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/static/cdfce9c1a1da10981349cefcadbee3ed/4a9ea/13-13.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 84%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAARABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAEF/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEAMQAAAByYEAgAf/xAAUEAEAAAAAAAAAAAAAAAAAAAAw/9oACAEBAAEFAh//xAAUEQEAAAAAAAAAAAAAAAAAAAAg/9oACAEDAQE/AR//xAAUEQEAAAAAAAAAAAAAAAAAAAAg/9oACAECAQE/AR//xAAUEAEAAAAAAAAAAAAAAAAAAAAw/9oACAEBAAY/Ah//xAAcEAABBAMBAAAAAAAAAAAAAAABABAxQREhYYH/2gAIAQEAAT8hqUdWwWOAesYD/wD/2gAMAwEAAgADAAAAEBAAPP/EABQRAQAAAAAAAAAAAAAAAAAAACD/2gAIAQMBAT8QH//EABQRAQAAAAAAAAAAAAAAAAAAACD/2gAIAQIBAT8QH//EABsQAQEAAgMBAAAAAAAAAAAAAAERABAhUZFB/9oACAEBAAE/EDmvEcpQXkyveESM47xowEn00DX/2Q=='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Screenshot"
+        title="Screenshot"
+        src="/blog/static/cdfce9c1a1da10981349cefcadbee3ed/4a9ea/13-13.jpg"
+        srcset="/blog/static/cdfce9c1a1da10981349cefcadbee3ed/75985/13-13.jpg 150w,
+/blog/static/cdfce9c1a1da10981349cefcadbee3ed/f93b5/13-13.jpg 300w,
+/blog/static/cdfce9c1a1da10981349cefcadbee3ed/4a9ea/13-13.jpg 435w"
+        sizes="(max-width: 435px) 100vw, 435px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>Und dann fügen wir noch unsere GitHub URL ins Firebase Backend ein, damit Firebase weiß die URL ist erlaubt.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 600px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/static/06d2343106b9e7f035129062ec8f0349/9aaa0/13-14.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 58.00000000000001%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAMABQDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAAYBBP/EABUBAQEAAAAAAAAAAAAAAAAAAAEC/9oADAMBAAIQAxAAAAHgrJSrZ0Ff/8QAGBAAAgMAAAAAAAAAAAAAAAAAAxAREzP/2gAIAQEAAQUCFNyHsv/EABURAQEAAAAAAAAAAAAAAAAAAAEQ/9oACAEDAQE/ASf/xAAVEQEBAAAAAAAAAAAAAAAAAAABEP/aAAgBAgEBPwFn/8QAFxAAAwEAAAAAAAAAAAAAAAAAAhBxcv/aAAgBAQAGPwIKw0//xAAaEAACAgMAAAAAAAAAAAAAAAAAARExEJGx/9oACAEBAAE/IbNuvSCBdbP/2gAMAwEAAgADAAAAEL/P/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPxA//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPxA//8QAHhABAAECBwAAAAAAAAAAAAAAAQARQSExUXGRoeH/2gAIAQEAAT8QSqMvroiVvzN3cAbH1I5ys//Z'); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Screenshot"
+        title="Screenshot"
+        src="/blog/static/06d2343106b9e7f035129062ec8f0349/b4294/13-14.jpg"
+        srcset="/blog/static/06d2343106b9e7f035129062ec8f0349/75985/13-14.jpg 150w,
+/blog/static/06d2343106b9e7f035129062ec8f0349/f93b5/13-14.jpg 300w,
+/blog/static/06d2343106b9e7f035129062ec8f0349/b4294/13-14.jpg 600w,
+/blog/static/06d2343106b9e7f035129062ec8f0349/9aaa0/13-14.jpg 671w"
+        sizes="(max-width: 600px) 100vw, 600px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p></article></div></div></div></div></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/article-13-shop-3-firebase-auth/";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"polyfill":["/polyfill-2f533b7f1322894d1916.js"],"app":["/app-225160758adade3fa3f2.js"],"component---src-pages-404-js":["/component---src-pages-404-js-b6cff82b20efc5c765a6.js"],"component---src-pages-index-js":["/component---src-pages-index-js-67ea04f1708c39eeae81.js"],"component---src-templates-blog-post-js":["/component---src-templates-blog-post-js-4ecac0af02aa737e476c.js"]};/*]]>*/</script><script src="/blog/polyfill-2f533b7f1322894d1916.js" nomodule=""></script><script src="/blog/component---src-templates-blog-post-js-4ecac0af02aa737e476c.js" async=""></script><script src="/blog/commons-5568e36bad1ff202403a.js" async=""></script><script src="/blog/app-225160758adade3fa3f2.js" async=""></script><script src="/blog/framework-bee5b4b4fa37bec3e7c7.js" async=""></script><script src="/blog/webpack-runtime-b52e989569019ef1a593.js" async=""></script><script src="https://design-system.ebalance.dev/dist/js/header.js"></script><script src="https://design-system.ebalance.dev/dist/js/off-canvas.js"></script></body></html>

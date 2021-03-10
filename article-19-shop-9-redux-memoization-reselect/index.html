@@ -1,0 +1,344 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><style data-href="/blog/styles.26a9653a6e822f025180.css" id="gatsby-global-css">@import url(https://design-system.ebalance.dev/dist/css/index.min.css);body{padding-bottom:50px;background:#f7f8f9}.gatsby-resp-image-wrapper{margin:7px 0!important;border-radius:5px;border:1px solid #ccc;box-shadow:0 3px 8px rgb(0 0 0/.1);overflow:hidden}.panel{max-width:800px;margin:0 auto;padding:50px;overflow:unset}.blog-link{display:block;padding:20px;border-radius:4px;background:#f7f8f9;transition:.15s;cursor:pointer}.blog-link+.blog-link{margin-top:20px}.blog-link:hover{background:#e7e8e9}</style><meta name="generator" content="Gatsby 3.0.4"/><title data-react-helmet="true">[Shop 9] Memoization mit Reselect | Oliver Knoblich</title><meta data-react-helmet="true" name="description" content="Blog von Oliver Knoblich"/><meta data-react-helmet="true" property="og:title" content="[Shop 9] Memoization mit Reselect"/><meta data-react-helmet="true" property="og:description" content="Blog von Oliver Knoblich"/><meta data-react-helmet="true" property="og:type" content="website"/><meta data-react-helmet="true" name="twitter:card" content="summary"/><meta data-react-helmet="true" name="twitter:creator" content="Oliver Knoblich"/><meta data-react-helmet="true" name="twitter:title" content="[Shop 9] Memoization mit Reselect"/><meta data-react-helmet="true" name="twitter:description" content="Blog von Oliver Knoblich"/><link as="script" rel="preload" href="/blog/webpack-runtime-b52e989569019ef1a593.js"/><link as="script" rel="preload" href="/blog/framework-bee5b4b4fa37bec3e7c7.js"/><link as="script" rel="preload" href="/blog/app-225160758adade3fa3f2.js"/><link as="script" rel="preload" href="/blog/commons-5568e36bad1ff202403a.js"/><link as="script" rel="preload" href="/blog/component---src-templates-blog-post-js-4ecac0af02aa737e476c.js"/><link as="fetch" rel="preload" href="/blog/page-data/article-19-shop-9-redux-memoization-reselect/page-data.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/blog/page-data/sq/d/63159454.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/blog/page-data/app-data.json" crossorigin="anonymous"/></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><div class="header is-white"><div class="inner"><nav><ul><li><a href="/">Home</a></li><li><a href="/blog/" class="is-active">Blog</a></li></ul></nav><nav><ul><li><a href="/react-admin-panel/"><span class="react">React</span>Admin Panel</a></li><li><a href="/react-book-store/"><span class="react">React</span>Book Store</a></li><li><a href="/react-budget-list/"><span class="react">React</span>Budget List</a></li><li><a href="/react-github-find/"><span class="react">React</span>GitHub Find</a></li><li><a href="/sass-design-system/"><span class="sass">Sass</span>Design System</a></li><li class="offcanvas-toggle"><svg viewBox="0 0 100 100"><path class="line l1" d="m 70,33 h -40 c 0,0 -8.5,-0.149796 -8.5,8.5 0,8.649796 8.5,8.5 8.5,8.5 h 20 v -20"></path><path class="line l2" d="m 70,50 h -40"></path><path class="line l3" d="m 30,67 h 40 c 0,0 8.5,0.149796 8.5,-8.5 0,-8.649796 -8.5,-8.5 -8.5,-8.5 h -20 v 20"></path></svg></li></ul></nav></div></div><div class="offcanvas"><div class="inner"><nav><ul><li><a href="/">Home</a></li><li><a href="/blog/" class="is-active">Blog</a></li><li><a href="/react-admin-panel/"><span class="react">React</span> Admin Panel</a></li><li><a href="/react-book-store/"><span class="react">React</span> Book Store</a></li><li><a href="/react-budget-list/"><span class="react">React</span> Budget List</a></li><li><a href="/react-github-find/"><span class="react">React</span> GitHub Find</a></li><li><a href="/sass-design-system/"><span class="sass">Sass</span> Design System</a></li></ul></nav></div></div><div class="container"><h1 class="text-center my-5">Blog</h1><div class="panel is-high"><a style="position:absolute;top:-38px;left:0;width:100%;font-size:12px;text-align:center" href="/blog/"><span style="position:relative;top:2px;font-size:16px">←</span> zurück zur Übersicht</a><div class="row"><div class="col-12"><h1>[Shop 9] Memoization mit Reselect</h1></div><div class="col-12"><article><p>Der gesamte Redux Store wird bei einem State Change neu geschrieben. Damit werden auch Component Rereders getriggert bei denen gar kein Update stattfand. Das geht bei sehr teuren Berechnungen zu Lasten der Performance. Hier kommt MEMOIZATION ins Spiel. Wir installieren hierfür RESELECT.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 507px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/static/e5e768c27fa03e9f71ec295ce878255b/11ce4/19-1.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 21.333333333333336%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAEABQDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAX/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIQAxAAAAGMAD//xAAYEAADAQEAAAAAAAAAAAAAAAAAAQITA//aAAgBAQABBQJdaRrRrR//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/AT//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/AT//xAAWEAADAAAAAAAAAAAAAAAAAAAAQZH/2gAIAQEABj8CUFBQ/8QAGhAAAQUBAAAAAAAAAAAAAAAAAAExYZGh8f/aAAgBAQABPyFiwF4pLQf/2gAMAwEAAgADAAAAEIAP/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPxA//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPxA//8QAHhABAAECBwAAAAAAAAAAAAAAAQARITFBYXGx0fD/2gAIAQEAAT8QQBiljG4im766Spkbdc//2Q=='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Screenshot"
+        title="Screenshot"
+        src="/blog/static/e5e768c27fa03e9f71ec295ce878255b/11ce4/19-1.jpg"
+        srcset="/blog/static/e5e768c27fa03e9f71ec295ce878255b/75985/19-1.jpg 150w,
+/blog/static/e5e768c27fa03e9f71ec295ce878255b/f93b5/19-1.jpg 300w,
+/blog/static/e5e768c27fa03e9f71ec295ce878255b/11ce4/19-1.jpg 507w"
+        sizes="(max-width: 507px) 100vw, 507px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>Mit RESELECT schreibt man SELECTOR FUNCTIONS. Diese nehmen den State als Argument und returnen etwas dass auf diesem State basiert. Hier eine sehr gute Erklärung von einem der aktuellen Redux Maintainer:</p>
+<p>Idiomatic Redux: Using Reselect Selectors for Encapsulation and Performance <a href="https://blog.isquaredsoftware.com/2017/12/idiomatic-redux-using-reselect-selectors/">https://blog.isquaredsoftware.com/2017/12/idiomatic-redux-using-reselect-selectors/</a></p>
+<p>Selector Functions können jeden Namen haben, aber normalerweise beginnen sie mit GET oder SELECT. Sie akzepieren zwei Arguments, eine Reihe von INPUT SELECTORS und eine OUTPUT SELECTOR FUNCTION. In dieser Function kann man machen was man will. Am Ende returned createSelector() IMMER eine neue FUNCTION.</p>
+<p>In Code dargestellt:</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 509px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/static/9a4268581fb14ca09abb43fa5a4862f1/05852/19-2.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 17.333333333333336%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAADABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAIF/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEAMQAAAByQSD/8QAFhABAQEAAAAAAAAAAAAAAAAAEQAQ/9oACAEBAAEFAmc//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPwE//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPwE//8QAFBABAAAAAAAAAAAAAAAAAAAAEP/aAAgBAQAGPwJ//8QAFhABAQEAAAAAAAAAAAAAAAAAAAER/9oACAEBAAE/IdNLX//aAAwDAQACAAMAAAAQA8//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/ED//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/ED//xAAaEAEAAgMBAAAAAAAAAAAAAAABABEhMWGh/9oACAEBAAE/EAwBwcg9l+RL3P/Z'); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Screenshot"
+        title="Screenshot"
+        src="/blog/static/9a4268581fb14ca09abb43fa5a4862f1/05852/19-2.jpg"
+        srcset="/blog/static/9a4268581fb14ca09abb43fa5a4862f1/75985/19-2.jpg 150w,
+/blog/static/9a4268581fb14ca09abb43fa5a4862f1/f93b5/19-2.jpg 300w,
+/blog/static/9a4268581fb14ca09abb43fa5a4862f1/05852/19-2.jpg 509w"
+        sizes="(max-width: 509px) 100vw, 509px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>Werden die gleichen Argumente wie zuvor in eine Function gegeben, wird die teure Berechnung darin nicht erneut ausgeführt. Es wird sich an das Ergebnis „erinnert“.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 356px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/static/cde3e1ba74ce30d209dda8d836a54737/65bea/19-3.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 150.66666666666666%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAeABQDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAQACBf/EABUBAQEAAAAAAAAAAAAAAAAAAAAB/9oADAMBAAIQAxAAAAHlGyMTGhAqP//EABYQAQEBAAAAAAAAAAAAAAAAABAhQf/aAAgBAQABBQJylY//xAAUEQEAAAAAAAAAAAAAAAAAAAAg/9oACAEDAQE/AR//xAAUEQEAAAAAAAAAAAAAAAAAAAAg/9oACAECAQE/AR//xAAUEAEAAAAAAAAAAAAAAAAAAAAw/9oACAEBAAY/Ak//xAAdEAACAgIDAQAAAAAAAAAAAAABEQAQIWExQVFx/9oACAEBAAE/IelYfAH7DhQwheo49ox5X//aAAwDAQACAAMAAAAQKy6y/8QAFBEBAAAAAAAAAAAAAAAAAAAAIP/aAAgBAwEBPxAf/8QAFBEBAAAAAAAAAAAAAAAAAAAAIP/aAAgBAgEBPxAf/8QAIBABAAICAQQDAAAAAAAAAAAAAQARITFBEFFxkbHR8f/aAAgBAQABPxC3ALKez66FK28BxEkIg530ooFnZmxfjG3B6lW7Y3n7jZi3n9nM/9k='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Screenshot"
+        title="Screenshot"
+        src="/blog/static/cde3e1ba74ce30d209dda8d836a54737/65bea/19-3.jpg"
+        srcset="/blog/static/cde3e1ba74ce30d209dda8d836a54737/75985/19-3.jpg 150w,
+/blog/static/cde3e1ba74ce30d209dda8d836a54737/f93b5/19-3.jpg 300w,
+/blog/static/cde3e1ba74ce30d209dda8d836a54737/65bea/19-3.jpg 356w"
+        sizes="(max-width: 356px) 100vw, 356px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>In unserer Codebase sieht das nun so aus:</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 600px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/static/830c92fca59f8aa4550712d775b98292/2acc6/19-4.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 114.00000000000001%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAXABQDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAAIBBf/EABQBAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhADEAAAAeTmiQUCQf/EABQQAQAAAAAAAAAAAAAAAAAAADD/2gAIAQEAAQUCH//EABQRAQAAAAAAAAAAAAAAAAAAACD/2gAIAQMBAT8BH//EABQRAQAAAAAAAAAAAAAAAAAAACD/2gAIAQIBAT8BH//EABQQAQAAAAAAAAAAAAAAAAAAADD/2gAIAQEABj8CH//EABkQAAMAAwAAAAAAAAAAAAAAAAABEEFR4f/aAAgBAQABPyHHBxVDWp//2gAMAwEAAgADAAAAEITIPP/EABQRAQAAAAAAAAAAAAAAAAAAACD/2gAIAQMBAT8QH//EABQRAQAAAAAAAAAAAAAAAAAAACD/2gAIAQIBAT8QH//EABsQAQADAAMBAAAAAAAAAAAAAAEAESEQQYFx/9oACAEBAAE/EBxkJzK8lwCGp5KDtPHhFVWxnt8mjqz/2Q=='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Screenshot"
+        title="Screenshot"
+        src="/blog/static/830c92fca59f8aa4550712d775b98292/b4294/19-4.jpg"
+        srcset="/blog/static/830c92fca59f8aa4550712d775b98292/75985/19-4.jpg 150w,
+/blog/static/830c92fca59f8aa4550712d775b98292/f93b5/19-4.jpg 300w,
+/blog/static/830c92fca59f8aa4550712d775b98292/b4294/19-4.jpg 600w,
+/blog/static/830c92fca59f8aa4550712d775b98292/2acc6/19-4.jpg 708w"
+        sizes="(max-width: 600px) 100vw, 600px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>Der ItemCount, den wir per mapStateToProps in unsere Component als Prop geben, wird nun nichtmehr direkt an Ort und Stelle berechnet, sondern ruft eine Function importiert aus unseren Selectors auf. Diese führt die Operation aus, aber nur, wenn die Arguments anders sind als zuvor.</p>
+<p>Das gleiche können wir nun im Dropdown machen, aber nicht mit dem Item Count, sondern mit den Items selbst.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 600px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/static/62bbbe66cad46c0e3a997aad88ff253a/a530b/19-5.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 96.66666666666666%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAATABQDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAAECBf/EABQBAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhADEAAAAeTAiDYMA//EABQQAQAAAAAAAAAAAAAAAAAAADD/2gAIAQEAAQUCH//EABQRAQAAAAAAAAAAAAAAAAAAACD/2gAIAQMBAT8BH//EABQRAQAAAAAAAAAAAAAAAAAAACD/2gAIAQIBAT8BH//EABQQAQAAAAAAAAAAAAAAAAAAADD/2gAIAQEABj8CH//EABkQAQACAwAAAAAAAAAAAAAAAAEAEBEgMf/aAAgBAQABPyE5GjMdf//aAAwDAQACAAMAAAAQ5Mc8/8QAFREBAQAAAAAAAAAAAAAAAAAAESD/2gAIAQMBAT8QY//EABQRAQAAAAAAAAAAAAAAAAAAACD/2gAIAQIBAT8QH//EABwQAQACAwADAAAAAAAAAAAAAAEAERAhMVFhcf/aAAgBAQABPxBeDqIOjcW3koGhp9R72b+ODsQbsx//2Q=='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Screenshot"
+        title="Screenshot"
+        src="/blog/static/62bbbe66cad46c0e3a997aad88ff253a/b4294/19-5.jpg"
+        srcset="/blog/static/62bbbe66cad46c0e3a997aad88ff253a/75985/19-5.jpg 150w,
+/blog/static/62bbbe66cad46c0e3a997aad88ff253a/f93b5/19-5.jpg 300w,
+/blog/static/62bbbe66cad46c0e3a997aad88ff253a/b4294/19-5.jpg 600w,
+/blog/static/62bbbe66cad46c0e3a997aad88ff253a/a530b/19-5.jpg 619w"
+        sizes="(max-width: 600px) 100vw, 600px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>Die Änderungen in GIT im Überblick:</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 600px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/static/0c99068509fb08c6a124880884ff9d0b/66a2c/19-6.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 50.66666666666667%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAKABQDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAECBf/EABUBAQEAAAAAAAAAAAAAAAAAAAAB/9oADAMBAAIQAxAAAAHJchYiP//EABYQAAMAAAAAAAAAAAAAAAAAAAABIP/aAAgBAQABBQKUf//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQMBAT8BP//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQIBAT8BP//EABQQAQAAAAAAAAAAAAAAAAAAACD/2gAIAQEABj8CX//EABgQAQEBAQEAAAAAAAAAAAAAAAEAQRAx/9oACAEBAAE/IcggObeL/9oADAMBAAIAAwAAABAQ7//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQMBAT8QP//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQIBAT8QP//EABwQAQACAQUAAAAAAAAAAAAAAAEAESEQMVGBsf/aAAgBAQABPxDKLYCZp7lRsN+YLo9J/9k='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Screenshot"
+        title="Screenshot"
+        src="/blog/static/0c99068509fb08c6a124880884ff9d0b/b4294/19-6.jpg"
+        srcset="/blog/static/0c99068509fb08c6a124880884ff9d0b/75985/19-6.jpg 150w,
+/blog/static/0c99068509fb08c6a124880884ff9d0b/f93b5/19-6.jpg 300w,
+/blog/static/0c99068509fb08c6a124880884ff9d0b/b4294/19-6.jpg 600w,
+/blog/static/0c99068509fb08c6a124880884ff9d0b/8e1fc/19-6.jpg 900w,
+/blog/static/0c99068509fb08c6a124880884ff9d0b/66a2c/19-6.jpg 1021w"
+        sizes="(max-width: 600px) 100vw, 600px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 600px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/static/43037c97a5da9a387ed370d696f9c639/d07b4/19-7.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 62%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAMABQDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAAECBf/EABUBAQEAAAAAAAAAAAAAAAAAAAAB/9oADAMBAAIQAxAAAAHkpYrI/8QAFBABAAAAAAAAAAAAAAAAAAAAIP/aAAgBAQABBQJf/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPwE//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPwE//8QAFhAAAwAAAAAAAAAAAAAAAAAAECAx/9oACAEBAAY/AhE//8QAGhAAAwADAQAAAAAAAAAAAAAAAAEREEFRcf/aAAgBAQABPyHQpwUwXhYf/9oADAMBAAIAAwAAABBv7//EABYRAQEBAAAAAAAAAAAAAAAAAAEQEf/aAAgBAwEBPxBMn//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQIBAT8QP//EAB0QAQACAgIDAAAAAAAAAAAAAAEAESExQVFhcYH/2gAIAQEAAT8Quzm/sVKQvlY0OG+2GTUQNUfceAJ//9k='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Screenshot"
+        title="Screenshot"
+        src="/blog/static/43037c97a5da9a387ed370d696f9c639/b4294/19-7.jpg"
+        srcset="/blog/static/43037c97a5da9a387ed370d696f9c639/75985/19-7.jpg 150w,
+/blog/static/43037c97a5da9a387ed370d696f9c639/f93b5/19-7.jpg 300w,
+/blog/static/43037c97a5da9a387ed370d696f9c639/b4294/19-7.jpg 600w,
+/blog/static/43037c97a5da9a387ed370d696f9c639/8e1fc/19-7.jpg 900w,
+/blog/static/43037c97a5da9a387ed370d696f9c639/d07b4/19-7.jpg 1017w"
+        sizes="(max-width: 600px) 100vw, 600px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>FAZIT: Wir lesen den State nicht mehr direkt in der Component, sondern überlassen dass unseren verschiedenen Selektoren die wir im Redux Ordner geschrieben haben.</p>
+<p>Jetzt können wir das gleiche im HEADER machen. Dort haben wir den USER und den HIDDEN boolean.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 600px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/static/1f352a2d7bd72e280e0953fb976a4713/c2807/19-8.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 134.66666666666666%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAbABQDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAAECBf/EABUBAQEAAAAAAAAAAAAAAAAAAAAB/9oADAMBAAIQAxAAAAHkzUMg1KjKK//EABYQAAMAAAAAAAAAAAAAAAAAAAEQMP/aAAgBAQABBQKRX//EABQRAQAAAAAAAAAAAAAAAAAAACD/2gAIAQMBAT8BH//EABQRAQAAAAAAAAAAAAAAAAAAACD/2gAIAQIBAT8BH//EABQQAQAAAAAAAAAAAAAAAAAAADD/2gAIAQEABj8CT//EABkQAAIDAQAAAAAAAAAAAAAAAAABEBExQf/aAAgBAQABPyHk8KZTFkoxH//aAAwDAQACAAMAAAAQxNbM/8QAFxEAAwEAAAAAAAAAAAAAAAAAAAEREP/aAAgBAwEBPxAjJn//xAAUEQEAAAAAAAAAAAAAAAAAAAAg/9oACAECAQE/EB//xAAeEAEAAwACAgMAAAAAAAAAAAABABEhEGFBsXGBof/aAAgBAQABPxAcXX2Rcqvyb3AUUXkdDOK3h7iob7ZfcTRrNWbv54//2Q=='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Screenshot"
+        title="Screenshot"
+        src="/blog/static/1f352a2d7bd72e280e0953fb976a4713/b4294/19-8.jpg"
+        srcset="/blog/static/1f352a2d7bd72e280e0953fb976a4713/75985/19-8.jpg 150w,
+/blog/static/1f352a2d7bd72e280e0953fb976a4713/f93b5/19-8.jpg 300w,
+/blog/static/1f352a2d7bd72e280e0953fb976a4713/b4294/19-8.jpg 600w,
+/blog/static/1f352a2d7bd72e280e0953fb976a4713/c2807/19-8.jpg 615w"
+        sizes="(max-width: 600px) 100vw, 600px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>Damit wir jetzt nicht zig mal den STATE referieren müssen, holen wir uns CREATESTRUCTUREDSELECTOR. Damit können wir das ganze abkürzen:</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 600px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/static/faab5b0b9592ac734adcb0b7b670c0f2/9dbcf/19-9.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 86%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAARABQDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAAECBf/EABQBAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhADEAAAAeVEIg1QwD//xAAUEAEAAAAAAAAAAAAAAAAAAAAw/9oACAEBAAEFAh//xAAUEQEAAAAAAAAAAAAAAAAAAAAg/9oACAEDAQE/AR//xAAUEQEAAAAAAAAAAAAAAAAAAAAg/9oACAECAQE/AR//xAAUEAEAAAAAAAAAAAAAAAAAAAAw/9oACAEBAAY/Ah//xAAaEAACAwEBAAAAAAAAAAAAAAABEAARMSGB/9oACAEBAAE/IRVdhpDIfWcX/9oADAMBAAIAAwAAABA0yDz/xAAUEQEAAAAAAAAAAAAAAAAAAAAg/9oACAEDAQE/EB//xAAUEQEAAAAAAAAAAAAAAAAAAAAg/9oACAECAQE/EB//xAAdEAACAQQDAAAAAAAAAAAAAAAAAVERITFxEKGx/9oACAEBAAE/EGZLt0IG0tDcOokvRKYfYtAsmbj/2Q=='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Screenshot"
+        title="Screenshot"
+        src="/blog/static/faab5b0b9592ac734adcb0b7b670c0f2/b4294/19-9.jpg"
+        srcset="/blog/static/faab5b0b9592ac734adcb0b7b670c0f2/75985/19-9.jpg 150w,
+/blog/static/faab5b0b9592ac734adcb0b7b670c0f2/f93b5/19-9.jpg 300w,
+/blog/static/faab5b0b9592ac734adcb0b7b670c0f2/b4294/19-9.jpg 600w,
+/blog/static/faab5b0b9592ac734adcb0b7b670c0f2/9dbcf/19-9.jpg 631w"
+        sizes="(max-width: 600px) 100vw, 600px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>Unseer Code wird langsam aber sicher aufgeräumter und einfacher zu lesen. Jetzt übernehmen wir diesen Patteren für alle Components, und benutzen gleichzeitg auch überall CREATESTRUCTUREDSELECTOR.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 367px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/static/06b4dddcd4a8914cda0d7a74ad532d7d/fc0c2/19-10.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 112.66666666666667%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAXABQDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAAECBf/EABUBAQEAAAAAAAAAAAAAAAAAAAAB/9oADAMBAAIQAxAAAAHmxAE3CXIr/8QAGBAAAgMAAAAAAAAAAAAAAAAAARARICH/2gAIAQEAAQUCiwOL/8QAFBEBAAAAAAAAAAAAAAAAAAAAIP/aAAgBAwEBPwEf/8QAFBEBAAAAAAAAAAAAAAAAAAAAIP/aAAgBAgEBPwEf/8QAFRABAQAAAAAAAAAAAAAAAAAAMDH/2gAIAQEABj8Cg//EABwQAQEBAAIDAQAAAAAAAAAAAAEAEUFxMVFhgf/aAAgBAQABPyFGeTZnDPTBpxJ1fhe5b9lv/9oADAMBAAIAAwAAABCz9/z/xAAWEQEBAQAAAAAAAAAAAAAAAAAQEUH/2gAIAQMBAT8Qhh//xAAWEQEBAQAAAAAAAAAAAAAAAAAQEUH/2gAIAQIBAT8Qpp//xAAeEAEAAgEFAQEAAAAAAAAAAAABABExIWFxkcFR4f/aAAgBAQABPxBQcTJcqsTxAWVRENw3ZRg7ymi+u4BTQ8p5HW7vv5CvPs//2Q=='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Screenshot"
+        title="Screenshot"
+        src="/blog/static/06b4dddcd4a8914cda0d7a74ad532d7d/fc0c2/19-10.jpg"
+        srcset="/blog/static/06b4dddcd4a8914cda0d7a74ad532d7d/75985/19-10.jpg 150w,
+/blog/static/06b4dddcd4a8914cda0d7a74ad532d7d/f93b5/19-10.jpg 300w,
+/blog/static/06b4dddcd4a8914cda0d7a74ad532d7d/fc0c2/19-10.jpg 367w"
+        sizes="(max-width: 367px) 100vw, 367px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>Die finalen Änderungen in GIT:</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 600px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/static/4cd36300a7e674bc4f110aa49105c1de/ed9a5/19-11.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 74%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAPABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAEE/8QAFQEBAQAAAAAAAAAAAAAAAAAAAQD/2gAMAwEAAhADEAAAAcRBoj//xAAXEAADAQAAAAAAAAAAAAAAAAAAAhES/9oACAEBAAEFAopFIppCoVD/xAAVEQEBAAAAAAAAAAAAAAAAAAABEP/aAAgBAwEBPwFn/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPwE//8QAGhAAAQUBAAAAAAAAAAAAAAAAAAIyQpGSM//aAAgBAQAGPwJizmuxi7J6J6J6P//EAB4QAAEDBAMAAAAAAAAAAAAAAAAB4fARIXHRMWGx/9oACAEBAAE/IVc2E3DCU0WJeCUuJYOqGD//2gAMAwEAAgADAAAAEBvP/8QAFREBAQAAAAAAAAAAAAAAAAAAEDH/2gAIAQMBAT8Qg//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQIBAT8QP//EAB4QAAIBAwUAAAAAAAAAAAAAAAABESFRcYGRwdHh/9oACAEBAAE/EIfFkvKmgF9EhstoPSTMoH5Yf//Z'); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Screenshot"
+        title="Screenshot"
+        src="/blog/static/4cd36300a7e674bc4f110aa49105c1de/b4294/19-11.jpg"
+        srcset="/blog/static/4cd36300a7e674bc4f110aa49105c1de/75985/19-11.jpg 150w,
+/blog/static/4cd36300a7e674bc4f110aa49105c1de/f93b5/19-11.jpg 300w,
+/blog/static/4cd36300a7e674bc4f110aa49105c1de/b4294/19-11.jpg 600w,
+/blog/static/4cd36300a7e674bc4f110aa49105c1de/8e1fc/19-11.jpg 900w,
+/blog/static/4cd36300a7e674bc4f110aa49105c1de/ed9a5/19-11.jpg 940w"
+        sizes="(max-width: 600px) 100vw, 600px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p></article></div></div></div></div></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/article-19-shop-9-redux-memoization-reselect/";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"polyfill":["/polyfill-2f533b7f1322894d1916.js"],"app":["/app-225160758adade3fa3f2.js"],"component---src-pages-404-js":["/component---src-pages-404-js-b6cff82b20efc5c765a6.js"],"component---src-pages-index-js":["/component---src-pages-index-js-67ea04f1708c39eeae81.js"],"component---src-templates-blog-post-js":["/component---src-templates-blog-post-js-4ecac0af02aa737e476c.js"]};/*]]>*/</script><script src="/blog/polyfill-2f533b7f1322894d1916.js" nomodule=""></script><script src="/blog/component---src-templates-blog-post-js-4ecac0af02aa737e476c.js" async=""></script><script src="/blog/commons-5568e36bad1ff202403a.js" async=""></script><script src="/blog/app-225160758adade3fa3f2.js" async=""></script><script src="/blog/framework-bee5b4b4fa37bec3e7c7.js" async=""></script><script src="/blog/webpack-runtime-b52e989569019ef1a593.js" async=""></script><script src="https://design-system.ebalance.dev/dist/js/header.js"></script><script src="https://design-system.ebalance.dev/dist/js/off-canvas.js"></script></body></html>

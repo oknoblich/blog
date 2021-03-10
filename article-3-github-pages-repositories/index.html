@@ -1,0 +1,362 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><style data-href="/blog/styles.26a9653a6e822f025180.css" id="gatsby-global-css">@import url(https://design-system.ebalance.dev/dist/css/index.min.css);body{padding-bottom:50px;background:#f7f8f9}.gatsby-resp-image-wrapper{margin:7px 0!important;border-radius:5px;border:1px solid #ccc;box-shadow:0 3px 8px rgb(0 0 0/.1);overflow:hidden}.panel{max-width:800px;margin:0 auto;padding:50px;overflow:unset}.blog-link{display:block;padding:20px;border-radius:4px;background:#f7f8f9;transition:.15s;cursor:pointer}.blog-link+.blog-link{margin-top:20px}.blog-link:hover{background:#e7e8e9}</style><meta name="generator" content="Gatsby 3.0.4"/><title data-react-helmet="true">Wie erstelle ich ein auf GitHub gehostetes Portfolio mit mehreren Repositories auf einer einzigen kostenlosen Domain? | Oliver Knoblich</title><meta data-react-helmet="true" name="description" content="Blog von Oliver Knoblich"/><meta data-react-helmet="true" property="og:title" content="Wie erstelle ich ein auf GitHub gehostetes Portfolio mit mehreren Repositories auf einer einzigen kostenlosen Domain?"/><meta data-react-helmet="true" property="og:description" content="Blog von Oliver Knoblich"/><meta data-react-helmet="true" property="og:type" content="website"/><meta data-react-helmet="true" name="twitter:card" content="summary"/><meta data-react-helmet="true" name="twitter:creator" content="Oliver Knoblich"/><meta data-react-helmet="true" name="twitter:title" content="Wie erstelle ich ein auf GitHub gehostetes Portfolio mit mehreren Repositories auf einer einzigen kostenlosen Domain?"/><meta data-react-helmet="true" name="twitter:description" content="Blog von Oliver Knoblich"/><link as="script" rel="preload" href="/blog/webpack-runtime-b52e989569019ef1a593.js"/><link as="script" rel="preload" href="/blog/framework-bee5b4b4fa37bec3e7c7.js"/><link as="script" rel="preload" href="/blog/app-225160758adade3fa3f2.js"/><link as="script" rel="preload" href="/blog/commons-5568e36bad1ff202403a.js"/><link as="script" rel="preload" href="/blog/component---src-templates-blog-post-js-4ecac0af02aa737e476c.js"/><link as="fetch" rel="preload" href="/blog/page-data/article-3-github-pages-repositories/page-data.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/blog/page-data/sq/d/63159454.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/blog/page-data/app-data.json" crossorigin="anonymous"/></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><div class="header is-white"><div class="inner"><nav><ul><li><a href="/">Home</a></li><li><a href="/blog/" class="is-active">Blog</a></li></ul></nav><nav><ul><li><a href="/react-admin-panel/"><span class="react">React</span>Admin Panel</a></li><li><a href="/react-book-store/"><span class="react">React</span>Book Store</a></li><li><a href="/react-budget-list/"><span class="react">React</span>Budget List</a></li><li><a href="/react-github-find/"><span class="react">React</span>GitHub Find</a></li><li><a href="/sass-design-system/"><span class="sass">Sass</span>Design System</a></li><li class="offcanvas-toggle"><svg viewBox="0 0 100 100"><path class="line l1" d="m 70,33 h -40 c 0,0 -8.5,-0.149796 -8.5,8.5 0,8.649796 8.5,8.5 8.5,8.5 h 20 v -20"></path><path class="line l2" d="m 70,50 h -40"></path><path class="line l3" d="m 30,67 h 40 c 0,0 8.5,0.149796 8.5,-8.5 0,-8.649796 -8.5,-8.5 -8.5,-8.5 h -20 v 20"></path></svg></li></ul></nav></div></div><div class="offcanvas"><div class="inner"><nav><ul><li><a href="/">Home</a></li><li><a href="/blog/" class="is-active">Blog</a></li><li><a href="/react-admin-panel/"><span class="react">React</span> Admin Panel</a></li><li><a href="/react-book-store/"><span class="react">React</span> Book Store</a></li><li><a href="/react-budget-list/"><span class="react">React</span> Budget List</a></li><li><a href="/react-github-find/"><span class="react">React</span> GitHub Find</a></li><li><a href="/sass-design-system/"><span class="sass">Sass</span> Design System</a></li></ul></nav></div></div><div class="container"><h1 class="text-center my-5">Blog</h1><div class="panel is-high"><a style="position:absolute;top:-38px;left:0;width:100%;font-size:12px;text-align:center" href="/blog/"><span style="position:relative;top:2px;font-size:16px">←</span> zurück zur Übersicht</a><div class="row"><div class="col-12"><h1>Wie erstelle ich ein auf GitHub gehostetes Portfolio mit mehreren Repositories auf einer einzigen kostenlosen Domain?</h1></div><div class="col-12"><article><p>Als erstes wird natürlich ein GitHub Account benötigt. Die Registrierung ist noch das schwerste am ganzen Prozess. Der rest ist dank GitHub Pages super einfach. Zu erst einmal erstellen wir ein neues Repository.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 353px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/static/a91c7495286596ba91b2545ffa73bed1/51faa/3-1.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 48.666666666666664%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAKABQDASIAAhEBAxEB/8QAGAAAAgMAAAAAAAAAAAAAAAAAAAUBAgT/xAAVAQEBAAAAAAAAAAAAAAAAAAAAAf/aAAwDAQACEAMQAAAB0VcSiYcB/8QAGRAAAgMBAAAAAAAAAAAAAAAAAQIABBQQ/9oACAEBAAEFAsSktSUTCpHf/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPwE//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPwE//8QAGhAAAQUBAAAAAAAAAAAAAAAAMgABAiCRgf/aAAgBAQAGPwI3xFLjI5ZT/8QAGhAAAgIDAAAAAAAAAAAAAAAAAREAURBxwf/aAAgBAQABPyE8BwO36IBhQ7CIVn//2gAMAwEAAgADAAAAEI//AP/EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQMBAT8QP//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQIBAT8QP//EAB0QAQEAAgEFAAAAAAAAAAAAAAERACExEEFxgZH/2gAIAQEAAT8QXKLJwGvWHXYyKc1BSwCecacPnR7Z/9k='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Screenshot"
+        title="Screenshot"
+        src="/blog/static/a91c7495286596ba91b2545ffa73bed1/51faa/3-1.jpg"
+        srcset="/blog/static/a91c7495286596ba91b2545ffa73bed1/75985/3-1.jpg 150w,
+/blog/static/a91c7495286596ba91b2545ffa73bed1/f93b5/3-1.jpg 300w,
+/blog/static/a91c7495286596ba91b2545ffa73bed1/51faa/3-1.jpg 353w"
+        sizes="(max-width: 353px) 100vw, 353px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>Dieses bekommt den exakten Namen des Users + github.io - also in diesem Fall oknoblich.github.io</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 555px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/static/f58842a84f2aefc59160ae65a31cee7b/6ea3d/3-2.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 72%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAOABQDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAAECBf/EABQBAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhADEAAAAe5Q0g//xAAYEAACAwAAAAAAAAAAAAAAAAAAEAEhQf/aAAgBAQABBQIhbS//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/AT//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/AT//xAAVEAEBAAAAAAAAAAAAAAAAAAAgMf/aAAgBAQAGPwKr/8QAGxAAAgIDAQAAAAAAAAAAAAAAAAEhMRFRcYH/2gAIAQEAAT8hduQyxbPSBwRo/9oADAMBAAIAAwAAABCAD//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQMBAT8QP//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQIBAT8QP//EAB4QAQABAwUBAAAAAAAAAAAAAAEAESGRQVFhcYGh/9oACAEBAAE/EANg4qxVBa3nr5FCqOZ04IC0Yn//2Q=='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Screenshot"
+        title="Screenshot"
+        src="/blog/static/f58842a84f2aefc59160ae65a31cee7b/6ea3d/3-2.jpg"
+        srcset="/blog/static/f58842a84f2aefc59160ae65a31cee7b/75985/3-2.jpg 150w,
+/blog/static/f58842a84f2aefc59160ae65a31cee7b/f93b5/3-2.jpg 300w,
+/blog/static/f58842a84f2aefc59160ae65a31cee7b/6ea3d/3-2.jpg 555w"
+        sizes="(max-width: 555px) 100vw, 555px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>Dann brauchen wir eine INDEX page. Diese erstellen wir einfach in HTML. Wusstest du, dass in HTML fast alles optional ist? Sogar html, head und body? Alles was wir brauchen um zu starten sind diese 3 Zeilen.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 354px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/static/405b28cc597462e777942a7739c5fa3f/e1632/3-3.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 57.333333333333336%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAALABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAEF/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAH/2gAMAwEAAhADEAAAActFkUf/xAAUEAEAAAAAAAAAAAAAAAAAAAAg/9oACAEBAAEFAl//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/AT//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/AT//xAAUEAEAAAAAAAAAAAAAAAAAAAAg/9oACAEBAAY/Al//xAAZEAACAwEAAAAAAAAAAAAAAAAAARARIVH/2gAIAQEAAT8hTyjOKEXH/9oADAMBAAIAAwAAABC//wD/xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/ED//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/ED//xAAbEAEAAwADAQAAAAAAAAAAAAABABExECFRcf/aAAgBAQABPxDUysuJo+FyjyJMYpKXrj//2Q=='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Screenshot"
+        title="Screenshot"
+        src="/blog/static/405b28cc597462e777942a7739c5fa3f/e1632/3-3.jpg"
+        srcset="/blog/static/405b28cc597462e777942a7739c5fa3f/75985/3-3.jpg 150w,
+/blog/static/405b28cc597462e777942a7739c5fa3f/f93b5/3-3.jpg 300w,
+/blog/static/405b28cc597462e777942a7739c5fa3f/e1632/3-3.jpg 354w"
+        sizes="(max-width: 354px) 100vw, 354px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>Diese Page pushen wie jetzt gemäß der in Github angezeigten Anleitung.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 600px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/static/ffe06d205059eab05dabdeab591bceb5/e20b3/3-4.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 34%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAHABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAIF/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEAMQAAAB2qCgf//EABUQAQEAAAAAAAAAAAAAAAAAABAR/9oACAEBAAEFAo//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/AT//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/AT//xAAUEAEAAAAAAAAAAAAAAAAAAAAQ/9oACAEBAAY/An//xAAZEAEBAAMBAAAAAAAAAAAAAAABABEhMUH/2gAIAQEAAT8hF6QY4W7/2gAMAwEAAgADAAAAEPgP/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPxA//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPxA//8QAGxAAAgIDAQAAAAAAAAAAAAAAABEBQSFhgbH/2gAIAQEAAT8QewT0pMbY7en/2Q=='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Screenshot"
+        title="Screenshot"
+        src="/blog/static/ffe06d205059eab05dabdeab591bceb5/b4294/3-4.jpg"
+        srcset="/blog/static/ffe06d205059eab05dabdeab591bceb5/75985/3-4.jpg 150w,
+/blog/static/ffe06d205059eab05dabdeab591bceb5/f93b5/3-4.jpg 300w,
+/blog/static/ffe06d205059eab05dabdeab591bceb5/b4294/3-4.jpg 600w,
+/blog/static/ffe06d205059eab05dabdeab591bceb5/e20b3/3-4.jpg 667w"
+        sizes="(max-width: 600px) 100vw, 600px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>Und schon ist sie da.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 475px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/static/ece9d56e46b7da4c45d7832242a09065/55feb/3-5.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 69.33333333333334%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAOABQDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAAECBf/EABQBAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhADEAAAAe60Io//xAAVEAEBAAAAAAAAAAAAAAAAAAARIP/aAAgBAQABBQIr/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPwE//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPwE//8QAFBABAAAAAAAAAAAAAAAAAAAAIP/aAAgBAQAGPwJf/8QAGBAAAwEBAAAAAAAAAAAAAAAAAAERECH/2gAIAQEAAT8hYkZ0apM//9oADAMBAAIAAwAAABALz//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQMBAT8QP//EABURAQEAAAAAAAAAAAAAAAAAABAR/9oACAECAQE/EKf/xAAbEAADAQADAQAAAAAAAAAAAAAAARExQVFxkf/aAAgBAQABPxDS85olovMZOy+EkooSRD//2Q=='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Screenshot"
+        title="Screenshot"
+        src="/blog/static/ece9d56e46b7da4c45d7832242a09065/55feb/3-5.jpg"
+        srcset="/blog/static/ece9d56e46b7da4c45d7832242a09065/75985/3-5.jpg 150w,
+/blog/static/ece9d56e46b7da4c45d7832242a09065/f93b5/3-5.jpg 300w,
+/blog/static/ece9d56e46b7da4c45d7832242a09065/55feb/3-5.jpg 475w"
+        sizes="(max-width: 475px) 100vw, 475px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>Und die Seite automatisch live. Der Prozess dauerte nichtmal 5 Minuten.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 318px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/static/07985d9ca402014c900dfb2d6c9f9eb2/2debd/3-6.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 50.66666666666667%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAKABQDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAECBf/EABQBAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhADEAAAAdt2CKD/xAAXEAADAQAAAAAAAAAAAAAAAAAAAREg/9oACAEBAAEFAoR5/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPwE//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPwE//8QAFRABAQAAAAAAAAAAAAAAAAAAIDH/2gAIAQEABj8Ci//EABkQAAIDAQAAAAAAAAAAAAAAAAARASBBcf/aAAgBAQABPyFI0cBU/9oADAMBAAIAAwAAABAwD//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQMBAT8QP//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQIBAT8QP//EABwQAAIBBQEAAAAAAAAAAAAAAAERACBBYYHR8P/aAAgBAQABPxAMEN9mOvsD2Og06P/Z'); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Screenshot"
+        title="Screenshot"
+        src="/blog/static/07985d9ca402014c900dfb2d6c9f9eb2/2debd/3-6.jpg"
+        srcset="/blog/static/07985d9ca402014c900dfb2d6c9f9eb2/75985/3-6.jpg 150w,
+/blog/static/07985d9ca402014c900dfb2d6c9f9eb2/f93b5/3-6.jpg 300w,
+/blog/static/07985d9ca402014c900dfb2d6c9f9eb2/2debd/3-6.jpg 318w"
+        sizes="(max-width: 318px) 100vw, 318px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>Jetzt wollen wir auf diesem Portfolio all unsere Projekte hosten. Theoretisch könnten wir nun einfach haufenweise Subfolder im Repo anlegen. Für jedes Projekt ein neuer Folder. Das macht aber a) das Repo ziemlich voll und b) kann man dann keine Projekte einzeln clonen oder forken. Also erstellen wir für jedes Projekt ein neues Repo. Jetzt müssen wir das nur in unser Portfolio bekommen.</p>
+<p>Nehmen wir an wir bauen einen alten Klassiker, die React Todo Liste. Also erstellen wir wie im ersten Schritt erstmal ein Repo und pushen eine INDEX Datei.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 297px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/static/85fa451894b27c180fccd3d3213fac80/c43cc/3-7.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 72.66666666666667%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAPABQDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAQACBf/EABUBAQEAAAAAAAAAAAAAAAAAAAAB/9oADAMBAAIQAxAAAAHmZSwmP//EABYQAAMAAAAAAAAAAAAAAAAAAAARIP/aAAgBAQABBQIU/wD/xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/AT//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/AT//xAAUEAEAAAAAAAAAAAAAAAAAAAAg/9oACAEBAAY/Al//xAAZEAACAwEAAAAAAAAAAAAAAAAAEQEgMVH/2gAIAQEAAT8h0Tkip//aAAwDAQACAAMAAAAQ3z//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/ED//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/ED//xAAdEAEAAgEFAQAAAAAAAAAAAAABABExIUFhgaHR/9oACAEBAAE/ELCiNcB8lBk8lIIGPYo7V3NJ/9k='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Screenshot"
+        title="Screenshot"
+        src="/blog/static/85fa451894b27c180fccd3d3213fac80/c43cc/3-7.jpg"
+        srcset="/blog/static/85fa451894b27c180fccd3d3213fac80/75985/3-7.jpg 150w,
+/blog/static/85fa451894b27c180fccd3d3213fac80/c43cc/3-7.jpg 297w"
+        sizes="(max-width: 297px) 100vw, 297px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 465px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/static/25620a3fdcb2d589f89142705653d3bf/dbe2a/3-8.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 72%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAOABQDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAAECBf/EABQBAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhADEAAAAe60Io//xAAUEAEAAAAAAAAAAAAAAAAAAAAg/9oACAEBAAEFAl//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/AT//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/AT//xAAUEAEAAAAAAAAAAAAAAAAAAAAg/9oACAEBAAY/Al//xAAYEAEAAwEAAAAAAAAAAAAAAAABABARMf/aAAgBAQABPyFJyk2ZX//aAAwDAQACAAMAAAAQQ8//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/ED//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/ED//xAAaEAADAAMBAAAAAAAAAAAAAAAAAREhMUFx/9oACAEBAAE/EI291sXCePGJPrRJLBQoQ//Z'); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Screenshot"
+        title="Screenshot"
+        src="/blog/static/25620a3fdcb2d589f89142705653d3bf/dbe2a/3-8.jpg"
+        srcset="/blog/static/25620a3fdcb2d589f89142705653d3bf/75985/3-8.jpg 150w,
+/blog/static/25620a3fdcb2d589f89142705653d3bf/f93b5/3-8.jpg 300w,
+/blog/static/25620a3fdcb2d589f89142705653d3bf/dbe2a/3-8.jpg 465w"
+        sizes="(max-width: 465px) 100vw, 465px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>Jetzt müssen wir GitHub mitteilen, dass wir das gerne in unserem Portfolio hätten. Dazu gehen wir auf SETTINGS und zu Github Pages. Dort selektieren wir unseren MAIN branch.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 419px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/static/b6a1cc0e14ae31d3ff574e063ef41319/b82dc/3-9.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 77.99999999999999%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAQABQDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAAECBf/EABQBAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhADEAAAAe3qUKP/xAAYEAACAwAAAAAAAAAAAAAAAAAAEQEQMf/aAAgBAQABBQIYydr/xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/AT//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/AT//xAAUEAEAAAAAAAAAAAAAAAAAAAAg/9oACAEBAAY/Al//xAAaEAADAAMBAAAAAAAAAAAAAAAAAREhUXHR/9oACAEBAAE/IWlX6zpHSKEduDK0f//aAAwDAQACAAMAAAAQ0w//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/ED//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/ED//xAAdEAADAAEFAQAAAAAAAAAAAAAAARFxITFBkcHh/9oACAEBAAE/EGFWO3Y9KGhR20qx9OIrLElRLsz/2Q=='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Screenshot"
+        title="Screenshot"
+        src="/blog/static/b6a1cc0e14ae31d3ff574e063ef41319/b82dc/3-9.jpg"
+        srcset="/blog/static/b6a1cc0e14ae31d3ff574e063ef41319/75985/3-9.jpg 150w,
+/blog/static/b6a1cc0e14ae31d3ff574e063ef41319/f93b5/3-9.jpg 300w,
+/blog/static/b6a1cc0e14ae31d3ff574e063ef41319/b82dc/3-9.jpg 419w"
+        sizes="(max-width: 419px) 100vw, 419px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>Und fertig. Nun ist auch unser Projekt auf dem Portfolio: <a href="https://oknoblich.github.io/react-todo-list/">https://oknoblich.github.io/react-todo-list/</a></p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 357px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/static/283a87a9f6771330eff3aac4a15906e2/61008/3-10.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 49.33333333333333%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAKABQDASIAAhEBAxEB/8QAGAAAAgMAAAAAAAAAAAAAAAAAAAMBAgX/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIQAxAAAAHcLyLGB//EABcQAAMBAAAAAAAAAAAAAAAAAAAREiD/2gAIAQEAAQUCQicf/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPwE//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPwE//8QAFRABAQAAAAAAAAAAAAAAAAAAIDH/2gAIAQEABj8Ci//EABkQAAIDAQAAAAAAAAAAAAAAAAABESBRMf/aAAgBAQABPyFYYnqHLtP/2gAMAwEAAgADAAAAEGAP/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPxA//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPxA//8QAHRABAAEDBQAAAAAAAAAAAAAAAREAIcEgQWHR4f/aAAgBAQABPxARsJ3X2ruB7qTKJ4kzo//Z'); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Screenshot"
+        title="Screenshot"
+        src="/blog/static/283a87a9f6771330eff3aac4a15906e2/61008/3-10.jpg"
+        srcset="/blog/static/283a87a9f6771330eff3aac4a15906e2/75985/3-10.jpg 150w,
+/blog/static/283a87a9f6771330eff3aac4a15906e2/f93b5/3-10.jpg 300w,
+/blog/static/283a87a9f6771330eff3aac4a15906e2/61008/3-10.jpg 357w"
+        sizes="(max-width: 357px) 100vw, 357px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>Jetzt können wir beide Seiten noch miteinander verlinken.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 600px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/static/deef6b7a1042c6a127652938f0efe5d2/7eb78/3-11.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 31.333333333333336%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAGABQDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAX/xAAVAQEBAAAAAAAAAAAAAAAAAAAAAf/aAAwDAQACEAMQAAABlCwD/8QAFBABAAAAAAAAAAAAAAAAAAAAEP/aAAgBAQABBQJ//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPwE//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPwE//8QAFBABAAAAAAAAAAAAAAAAAAAAEP/aAAgBAQAGPwJ//8QAFBABAAAAAAAAAAAAAAAAAAAAEP/aAAgBAQABPyF//9oADAMBAAIAAwAAABD4P//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQMBAT8QP//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQIBAT8QP//EABkQAQACAwAAAAAAAAAAAAAAAAEAESExcf/aAAgBAQABPxBRM7g1yNXP/9k='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Screenshot"
+        title="Screenshot"
+        src="/blog/static/deef6b7a1042c6a127652938f0efe5d2/b4294/3-11.jpg"
+        srcset="/blog/static/deef6b7a1042c6a127652938f0efe5d2/75985/3-11.jpg 150w,
+/blog/static/deef6b7a1042c6a127652938f0efe5d2/f93b5/3-11.jpg 300w,
+/blog/static/deef6b7a1042c6a127652938f0efe5d2/b4294/3-11.jpg 600w,
+/blog/static/deef6b7a1042c6a127652938f0efe5d2/7eb78/3-11.jpg 887w"
+        sizes="(max-width: 600px) 100vw, 600px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>Und schon können wir hin- und her navigieren: <a href="https://oknoblich.github.io/">https://oknoblich.github.io/</a></p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 600px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/static/78a5248eb3f444f8fff50327c6a3a3a1/9cad3/3-12.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 29.333333333333332%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAGABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAEF/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEAMQAAAB3QUH/8QAFRABAQAAAAAAAAAAAAAAAAAAABH/2gAIAQEAAQUCiI//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/AT//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/AT//xAAUEAEAAAAAAAAAAAAAAAAAAAAQ/9oACAEBAAY/An//xAAWEAADAAAAAAAAAAAAAAAAAAAAEBH/2gAIAQEAAT8hRJ//2gAMAwEAAgADAAAAEPAP/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPxA//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPxA//8QAGxABAAICAwAAAAAAAAAAAAAAAQARIUFRYYH/2gAIAQEAAT8QDsPCVVwV0ZnKXP/Z'); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Screenshot"
+        title="Screenshot"
+        src="/blog/static/78a5248eb3f444f8fff50327c6a3a3a1/b4294/3-12.jpg"
+        srcset="/blog/static/78a5248eb3f444f8fff50327c6a3a3a1/75985/3-12.jpg 150w,
+/blog/static/78a5248eb3f444f8fff50327c6a3a3a1/f93b5/3-12.jpg 300w,
+/blog/static/78a5248eb3f444f8fff50327c6a3a3a1/b4294/3-12.jpg 600w,
+/blog/static/78a5248eb3f444f8fff50327c6a3a3a1/9cad3/3-12.jpg 718w"
+        sizes="(max-width: 600px) 100vw, 600px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p></article></div></div></div></div></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/article-3-github-pages-repositories/";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"polyfill":["/polyfill-2f533b7f1322894d1916.js"],"app":["/app-225160758adade3fa3f2.js"],"component---src-pages-404-js":["/component---src-pages-404-js-b6cff82b20efc5c765a6.js"],"component---src-pages-index-js":["/component---src-pages-index-js-67ea04f1708c39eeae81.js"],"component---src-templates-blog-post-js":["/component---src-templates-blog-post-js-4ecac0af02aa737e476c.js"]};/*]]>*/</script><script src="/blog/polyfill-2f533b7f1322894d1916.js" nomodule=""></script><script src="/blog/component---src-templates-blog-post-js-4ecac0af02aa737e476c.js" async=""></script><script src="/blog/commons-5568e36bad1ff202403a.js" async=""></script><script src="/blog/app-225160758adade3fa3f2.js" async=""></script><script src="/blog/framework-bee5b4b4fa37bec3e7c7.js" async=""></script><script src="/blog/webpack-runtime-b52e989569019ef1a593.js" async=""></script><script src="https://design-system.ebalance.dev/dist/js/header.js"></script><script src="https://design-system.ebalance.dev/dist/js/off-canvas.js"></script></body></html>

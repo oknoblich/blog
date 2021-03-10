@@ -1,0 +1,246 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><style data-href="/blog/styles.26a9653a6e822f025180.css" id="gatsby-global-css">@import url(https://design-system.ebalance.dev/dist/css/index.min.css);body{padding-bottom:50px;background:#f7f8f9}.gatsby-resp-image-wrapper{margin:7px 0!important;border-radius:5px;border:1px solid #ccc;box-shadow:0 3px 8px rgb(0 0 0/.1);overflow:hidden}.panel{max-width:800px;margin:0 auto;padding:50px;overflow:unset}.blog-link{display:block;padding:20px;border-radius:4px;background:#f7f8f9;transition:.15s;cursor:pointer}.blog-link+.blog-link{margin-top:20px}.blog-link:hover{background:#e7e8e9}</style><meta name="generator" content="Gatsby 3.0.4"/><title data-react-helmet="true">[Shop 4] BE DB erstellen, User in DB, DB Eintrag in den State | Oliver Knoblich</title><meta data-react-helmet="true" name="description" content="Blog von Oliver Knoblich"/><meta data-react-helmet="true" property="og:title" content="[Shop 4] BE DB erstellen, User in DB, DB Eintrag in den State"/><meta data-react-helmet="true" property="og:description" content="Blog von Oliver Knoblich"/><meta data-react-helmet="true" property="og:type" content="website"/><meta data-react-helmet="true" name="twitter:card" content="summary"/><meta data-react-helmet="true" name="twitter:creator" content="Oliver Knoblich"/><meta data-react-helmet="true" name="twitter:title" content="[Shop 4] BE DB erstellen, User in DB, DB Eintrag in den State"/><meta data-react-helmet="true" name="twitter:description" content="Blog von Oliver Knoblich"/><link as="script" rel="preload" href="/blog/webpack-runtime-b52e989569019ef1a593.js"/><link as="script" rel="preload" href="/blog/framework-bee5b4b4fa37bec3e7c7.js"/><link as="script" rel="preload" href="/blog/app-225160758adade3fa3f2.js"/><link as="script" rel="preload" href="/blog/commons-5568e36bad1ff202403a.js"/><link as="script" rel="preload" href="/blog/component---src-templates-blog-post-js-4ecac0af02aa737e476c.js"/><link as="fetch" rel="preload" href="/blog/page-data/article-14-shop-4-user-in-firebase-state/page-data.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/blog/page-data/sq/d/63159454.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/blog/page-data/app-data.json" crossorigin="anonymous"/></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><div class="header is-white"><div class="inner"><nav><ul><li><a href="/">Home</a></li><li><a href="/blog/" class="is-active">Blog</a></li></ul></nav><nav><ul><li><a href="/react-admin-panel/"><span class="react">React</span>Admin Panel</a></li><li><a href="/react-book-store/"><span class="react">React</span>Book Store</a></li><li><a href="/react-budget-list/"><span class="react">React</span>Budget List</a></li><li><a href="/react-github-find/"><span class="react">React</span>GitHub Find</a></li><li><a href="/sass-design-system/"><span class="sass">Sass</span>Design System</a></li><li class="offcanvas-toggle"><svg viewBox="0 0 100 100"><path class="line l1" d="m 70,33 h -40 c 0,0 -8.5,-0.149796 -8.5,8.5 0,8.649796 8.5,8.5 8.5,8.5 h 20 v -20"></path><path class="line l2" d="m 70,50 h -40"></path><path class="line l3" d="m 30,67 h 40 c 0,0 8.5,0.149796 8.5,-8.5 0,-8.649796 -8.5,-8.5 -8.5,-8.5 h -20 v 20"></path></svg></li></ul></nav></div></div><div class="offcanvas"><div class="inner"><nav><ul><li><a href="/">Home</a></li><li><a href="/blog/" class="is-active">Blog</a></li><li><a href="/react-admin-panel/"><span class="react">React</span> Admin Panel</a></li><li><a href="/react-book-store/"><span class="react">React</span> Book Store</a></li><li><a href="/react-budget-list/"><span class="react">React</span> Budget List</a></li><li><a href="/react-github-find/"><span class="react">React</span> GitHub Find</a></li><li><a href="/sass-design-system/"><span class="sass">Sass</span> Design System</a></li></ul></nav></div></div><div class="container"><h1 class="text-center my-5">Blog</h1><div class="panel is-high"><a style="position:absolute;top:-38px;left:0;width:100%;font-size:12px;text-align:center" href="/blog/"><span style="position:relative;top:2px;font-size:16px">←</span> zurück zur Übersicht</a><div class="row"><div class="col-12"><h1>[Shop 4] BE DB erstellen, User in DB, DB Eintrag in den State</h1></div><div class="col-12"><article><p>Als erstes erstellen wir eine Datenbank in der Cloud.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 600px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/static/c2ff768e7094029c16a8760f698bad5d/22bc6/14-1.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 49.33333333333333%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAKABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAABQAB/8QAFAEBAAAAAAAAAAAAAAAAAAAABP/aAAwDAQACEAMQAAABOXKSMjaio//EABkQAAIDAQAAAAAAAAAAAAAAAAIzABARIf/aAAgBAQABBQIGZyAyv//EABYRAAMAAAAAAAAAAAAAAAAAAAMQMv/aAAgBAwEBPwEEr//EABYRAAMAAAAAAAAAAAAAAAAAAAQQMv/aAAgBAgEBPwEil//EABcQAAMBAAAAAAAAAAAAAAAAAAACEBH/2gAIAQEABj8CU2Lf/8QAGxAAAgEFAAAAAAAAAAAAAAAAARAAETFRkaH/2gAIAQEAAT8hHdBfA0yuh//aAAwDAQACAAMAAAAQjx//xAAXEQEAAwAAAAAAAAAAAAAAAAABEBFx/9oACAEDAQE/EC22P//EABYRAQEBAAAAAAAAAAAAAAAAAAEQcf/aAAgBAgEBPxBgMn//xAAcEAADAAEFAAAAAAAAAAAAAAAAARFxIUFRYfD/2gAIAQEAAT8QlR1rdgbGJNCLlHs6EI//2Q=='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Screenshot"
+        title="Screenshot"
+        src="/blog/static/c2ff768e7094029c16a8760f698bad5d/b4294/14-1.jpg"
+        srcset="/blog/static/c2ff768e7094029c16a8760f698bad5d/75985/14-1.jpg 150w,
+/blog/static/c2ff768e7094029c16a8760f698bad5d/f93b5/14-1.jpg 300w,
+/blog/static/c2ff768e7094029c16a8760f698bad5d/b4294/14-1.jpg 600w,
+/blog/static/c2ff768e7094029c16a8760f698bad5d/22bc6/14-1.jpg 782w"
+        sizes="(max-width: 600px) 100vw, 600px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 600px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/static/34925b35f01728e989884c4a3d47502b/6cfee/14-2.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 70%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAOABQDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAAQBBf/EABYBAQEBAAAAAAAAAAAAAAAAAAIAAf/aAAwDAQACEAMQAAABuy8jzFjb/8QAGhAAAgMBAQAAAAAAAAAAAAAAAAIBERQEEP/aAAgBAQABBQLOsmdBudfKGap//8QAGBEAAgMAAAAAAAAAAAAAAAAAAAECERL/2gAIAQMBAT8Byion/8QAFxEAAwEAAAAAAAAAAAAAAAAAAAISE//aAAgBAgEBPwHRimP/xAAXEAADAQAAAAAAAAAAAAAAAAAAATEg/9oACAEBAAY/Aqysrx//xAAbEAACAgMBAAAAAAAAAAAAAAAAAREhEDFx4f/aAAgBAQABPyFeYxaToVB0UEaP/9oADAMBAAIAAwAAABDLD//EABcRAQADAAAAAAAAAAAAAAAAAAARQWH/2gAIAQMBAT8Qnpk//8QAFxEBAAMAAAAAAAAAAAAAAAAAABFBYf/aAAgBAgEBPxCC2r//xAAcEAEBAQACAwEAAAAAAAAAAAABEQAhQTFRgfD/2gAIAQEAAT8QEBPi0Mt1fDFxxO5gAZzPe/UMat9LfO//2Q=='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Screenshot"
+        title="Screenshot"
+        src="/blog/static/34925b35f01728e989884c4a3d47502b/b4294/14-2.jpg"
+        srcset="/blog/static/34925b35f01728e989884c4a3d47502b/75985/14-2.jpg 150w,
+/blog/static/34925b35f01728e989884c4a3d47502b/f93b5/14-2.jpg 300w,
+/blog/static/34925b35f01728e989884c4a3d47502b/b4294/14-2.jpg 600w,
+/blog/static/34925b35f01728e989884c4a3d47502b/6cfee/14-2.jpg 845w"
+        sizes="(max-width: 600px) 100vw, 600px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 600px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/static/477319587d0eae4da2cf65cebcd52581/f9df6/14-3.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 60.66666666666667%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAMABQDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAIGBf/EABQBAQAAAAAAAAAAAAAAAAAAAAL/2gAMAwEAAhADEAAAAc2ukbFFRgr/xAAXEAADAQAAAAAAAAAAAAAAAAACEDIz/9oACAEBAAEFAhtDov/EABURAQEAAAAAAAAAAAAAAAAAAAEQ/9oACAEDAQE/ASf/xAAVEQEBAAAAAAAAAAAAAAAAAAABEP/aAAgBAgEBPwFn/8QAFhAAAwAAAAAAAAAAAAAAAAAAAhBx/9oACAEBAAY/AhrGv//EABsQAAEEAwAAAAAAAAAAAAAAAAABIZGxEBEx/9oACAEBAAE/IUx7NP0cXDvP/9oADAMBAAIAAwAAABC3z//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQMBAT8QP//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQIBAT8QP//EAB0QAQACAgIDAAAAAAAAAAAAAAEAETFxECFRkeH/2gAIAQEAAT8Qz6vl0gxIs4uaHuXdB8UAu64//9k='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Screenshot"
+        title="Screenshot"
+        src="/blog/static/477319587d0eae4da2cf65cebcd52581/b4294/14-3.jpg"
+        srcset="/blog/static/477319587d0eae4da2cf65cebcd52581/75985/14-3.jpg 150w,
+/blog/static/477319587d0eae4da2cf65cebcd52581/f93b5/14-3.jpg 300w,
+/blog/static/477319587d0eae4da2cf65cebcd52581/b4294/14-3.jpg 600w,
+/blog/static/477319587d0eae4da2cf65cebcd52581/f9df6/14-3.jpg 691w"
+        sizes="(max-width: 600px) 100vw, 600px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>Dann sorgen wir dafür dass unsere App einen neuen User in unsere neue Datenbank schreibt.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 600px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/static/dc636d66f46e4ecdf40245f51b02a4a8/80e3c/14-4.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 104.66666666666666%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAVABQDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAAECBf/EABUBAQEAAAAAAAAAAAAAAAAAAAAB/9oADAMBAAIQAxAAAAHlZuQDUEgX/8QAFBABAAAAAAAAAAAAAAAAAAAAMP/aAAgBAQABBQIf/8QAFBEBAAAAAAAAAAAAAAAAAAAAIP/aAAgBAwEBPwEf/8QAFBEBAAAAAAAAAAAAAAAAAAAAIP/aAAgBAgEBPwEf/8QAFBABAAAAAAAAAAAAAAAAAAAAMP/aAAgBAQAGPwIf/8QAGRAAAwADAAAAAAAAAAAAAAAAABARAUGB/9oACAEBAAE/IaZOmnCL/9oADAMBAAIAAwAAABBDF3z/xAAVEQEBAAAAAAAAAAAAAAAAAAAQEf/aAAgBAwEBPxAp/8QAFBEBAAAAAAAAAAAAAAAAAAAAIP/aAAgBAgEBPxAf/8QAGxAAAgIDAQAAAAAAAAAAAAAAAAERITFRYUH/2gAIAQEAAT8QVLt7kthwX0enrg5dwLBZTgfbHTjR/9k='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Screenshot"
+        title="Screenshot"
+        src="/blog/static/dc636d66f46e4ecdf40245f51b02a4a8/b4294/14-4.jpg"
+        srcset="/blog/static/dc636d66f46e4ecdf40245f51b02a4a8/75985/14-4.jpg 150w,
+/blog/static/dc636d66f46e4ecdf40245f51b02a4a8/f93b5/14-4.jpg 300w,
+/blog/static/dc636d66f46e4ecdf40245f51b02a4a8/b4294/14-4.jpg 600w,
+/blog/static/dc636d66f46e4ecdf40245f51b02a4a8/80e3c/14-4.jpg 720w"
+        sizes="(max-width: 600px) 100vw, 600px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 600px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/static/6555c7e145684cfea210779d602f848b/7bf67/14-5.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 104%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAVABQDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAAECBf/EABQBAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhADEAAAAeVGQC5AD//EABQQAQAAAAAAAAAAAAAAAAAAADD/2gAIAQEAAQUCH//EABQRAQAAAAAAAAAAAAAAAAAAACD/2gAIAQMBAT8BH//EABQRAQAAAAAAAAAAAAAAAAAAACD/2gAIAQIBAT8BH//EABQQAQAAAAAAAAAAAAAAAAAAADD/2gAIAQEABj8CH//EABwQAAICAgMAAAAAAAAAAAAAAAABECERMUFhgf/aAAgBAQABPyFOtjfZ6JVsxHE//9oADAMBAAIAAwAAABAXHzz/xAAUEQEAAAAAAAAAAAAAAAAAAAAg/9oACAEDAQE/EB//xAAUEQEAAAAAAAAAAAAAAAAAAAAg/9oACAECAQE/EB//xAAdEAACAQQDAAAAAAAAAAAAAAAAAREQMUFhIVGh/9oACAEBAAE/EGrAI7+k7iG1moHG7I2WlCfOVX//2Q=='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Screenshot"
+        title="Screenshot"
+        src="/blog/static/6555c7e145684cfea210779d602f848b/b4294/14-5.jpg"
+        srcset="/blog/static/6555c7e145684cfea210779d602f848b/75985/14-5.jpg 150w,
+/blog/static/6555c7e145684cfea210779d602f848b/f93b5/14-5.jpg 300w,
+/blog/static/6555c7e145684cfea210779d602f848b/b4294/14-5.jpg 600w,
+/blog/static/6555c7e145684cfea210779d602f848b/7bf67/14-5.jpg 680w"
+        sizes="(max-width: 600px) 100vw, 600px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 600px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/static/fbfe19dec6189aee614a08fd450011f5/a1517/14-6.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 36.66666666666667%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAHABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAMF/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAH/2gAMAwEAAhADEAAAAa7AgL//xAAWEAADAAAAAAAAAAAAAAAAAAAFEDH/2gAIAQEAAQUCHxf/xAAVEQEBAAAAAAAAAAAAAAAAAAABEP/aAAgBAwEBPwEn/8QAFREBAQAAAAAAAAAAAAAAAAAAARD/2gAIAQIBAT8BZ//EABUQAQEAAAAAAAAAAAAAAAAAAAIQ/9oACAEBAAY/Anf/xAAYEAACAwAAAAAAAAAAAAAAAAABEQAQkf/aAAgBAQABPyENRSc//9oADAMBAAIAAwAAABCP3//EABYRAAMAAAAAAAAAAAAAAAAAAAEQIf/aAAgBAwEBPxAIv//EABURAQEAAAAAAAAAAAAAAAAAABAx/9oACAECAQE/EKP/xAAZEAEAAgMAAAAAAAAAAAAAAAABABFBobH/2gAIAQEAAT8QFMxzYiFrACx1P//Z'); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Screenshot"
+        title="Screenshot"
+        src="/blog/static/fbfe19dec6189aee614a08fd450011f5/b4294/14-6.jpg"
+        srcset="/blog/static/fbfe19dec6189aee614a08fd450011f5/75985/14-6.jpg 150w,
+/blog/static/fbfe19dec6189aee614a08fd450011f5/f93b5/14-6.jpg 300w,
+/blog/static/fbfe19dec6189aee614a08fd450011f5/b4294/14-6.jpg 600w,
+/blog/static/fbfe19dec6189aee614a08fd450011f5/8e1fc/14-6.jpg 900w,
+/blog/static/fbfe19dec6189aee614a08fd450011f5/e5166/14-6.jpg 1200w,
+/blog/static/fbfe19dec6189aee614a08fd450011f5/a1517/14-6.jpg 1329w"
+        sizes="(max-width: 600px) 100vw, 600px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>Dann entfernen wir das Timelimit aus der Datenbank, damit in 4 Wochen noch alles funktioniert.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 600px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/static/7351729bff0addaaeccc3af5afa26c3b/696ad/14-7.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 46.666666666666664%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAJABQDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAgABBf/EABQBAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhADEAAAAe2hoox//8QAFxABAAMAAAAAAAAAAAAAAAAAEBIhQf/aAAgBAQABBQKpGn//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/AT//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/AT//xAAWEAADAAAAAAAAAAAAAAAAAAARIEH/2gAIAQEABj8CFb//xAAaEAACAgMAAAAAAAAAAAAAAAAAARGBEDFR/9oACAEBAAE/IVQToldLxYj/2gAMAwEAAgADAAAAEDPv/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPxA//8QAFREBAQAAAAAAAAAAAAAAAAAAARD/2gAIAQIBAT8QJ//EABwQAQADAAIDAAAAAAAAAAAAAAEAETFBUWGRsf/aAAgBAQABPxBBGqcrM2UNIHzLOnuH1NsxP//Z'); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Screenshot"
+        title="Screenshot"
+        src="/blog/static/7351729bff0addaaeccc3af5afa26c3b/b4294/14-7.jpg"
+        srcset="/blog/static/7351729bff0addaaeccc3af5afa26c3b/75985/14-7.jpg 150w,
+/blog/static/7351729bff0addaaeccc3af5afa26c3b/f93b5/14-7.jpg 300w,
+/blog/static/7351729bff0addaaeccc3af5afa26c3b/b4294/14-7.jpg 600w,
+/blog/static/7351729bff0addaaeccc3af5afa26c3b/696ad/14-7.jpg 847w"
+        sizes="(max-width: 600px) 100vw, 600px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>Dann sorgen wir dafür dass der eingeloggte User auch in unserem State landet.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 600px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/static/aa68589204314c501656987a9cb55e1f/2813e/14-8.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 81.33333333333333%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAQABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAEF/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEAMQAAAByZAQf//EABQQAQAAAAAAAAAAAAAAAAAAACD/2gAIAQEAAQUCX//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQMBAT8BP//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQIBAT8BP//EABQQAQAAAAAAAAAAAAAAAAAAACD/2gAIAQEABj8CX//EABgQAAIDAAAAAAAAAAAAAAAAAAABICFh/9oACAEBAAE/IUytj//aAAwDAQACAAMAAAAQoM//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/ED//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/ED//xAAdEAACAQQDAAAAAAAAAAAAAAABEQAQIUGRMVFx/9oACAEBAAE/EDMjPsYZaE9Pc4LcN7sbp//Z'); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Screenshot"
+        title="Screenshot"
+        src="/blog/static/aa68589204314c501656987a9cb55e1f/b4294/14-8.jpg"
+        srcset="/blog/static/aa68589204314c501656987a9cb55e1f/75985/14-8.jpg 150w,
+/blog/static/aa68589204314c501656987a9cb55e1f/f93b5/14-8.jpg 300w,
+/blog/static/aa68589204314c501656987a9cb55e1f/b4294/14-8.jpg 600w,
+/blog/static/aa68589204314c501656987a9cb55e1f/2813e/14-8.jpg 669w"
+        sizes="(max-width: 600px) 100vw, 600px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p></article></div></div></div></div></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/article-14-shop-4-user-in-firebase-state/";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"polyfill":["/polyfill-2f533b7f1322894d1916.js"],"app":["/app-225160758adade3fa3f2.js"],"component---src-pages-404-js":["/component---src-pages-404-js-b6cff82b20efc5c765a6.js"],"component---src-pages-index-js":["/component---src-pages-index-js-67ea04f1708c39eeae81.js"],"component---src-templates-blog-post-js":["/component---src-templates-blog-post-js-4ecac0af02aa737e476c.js"]};/*]]>*/</script><script src="/blog/polyfill-2f533b7f1322894d1916.js" nomodule=""></script><script src="/blog/component---src-templates-blog-post-js-4ecac0af02aa737e476c.js" async=""></script><script src="/blog/commons-5568e36bad1ff202403a.js" async=""></script><script src="/blog/app-225160758adade3fa3f2.js" async=""></script><script src="/blog/framework-bee5b4b4fa37bec3e7c7.js" async=""></script><script src="/blog/webpack-runtime-b52e989569019ef1a593.js" async=""></script><script src="https://design-system.ebalance.dev/dist/js/header.js"></script><script src="https://design-system.ebalance.dev/dist/js/off-canvas.js"></script></body></html>
