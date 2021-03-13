@@ -1,8 +1,5 @@
-@import url('https://design-system.ebalance.dev/dist/css/index.min.css');
-
 body {
-  padding-bottom: 50px;
-  background: #f7f8f9;
+  background: #f1f2f3 !important;
 }
 
 .gatsby-resp-image-wrapper {
